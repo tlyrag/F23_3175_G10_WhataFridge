@@ -17,9 +17,9 @@ import retrofit2.Response;
 public class SpoonacularController  {
     public  String tag = "WTFApp";
     GetRecipeByIngredients getRecipe;
-    public ArrayList<Recipe> recipesByIngredientList;
+
     RetrofitClient retrofitClient = new RetrofitClient();
-        public void getRecipeByIngredient(Context context,String ingredients,int number) {
+        public void getRecipeByIngredient(Context context,String ingredients,int number, GenericAPIResponse ApiResponse) {
             try {
                 getRecipe = retrofitClient.retrofit.create(GetRecipeByIngredients.class);
                 Call<ArrayList<Recipe>> callRecipeByIngredient = getRecipe.getRecipesByIngredients(ingredients,number,true,2,true);
@@ -28,11 +28,12 @@ public class SpoonacularController  {
                     public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                         if(!response.isSuccessful()){
                             Toast.makeText(context, "Error Fetching API", Toast.LENGTH_SHORT).show();
-                            Log.d(tag,"Error Fetching API");
+                            ApiResponse.onFail("Error Fetching the API:"+ response.message());
+                            Log.d(tag,"Error Fetching API:"+ response.message());
                         } else {
                             Toast.makeText(context, "API WORKED" + response.message(), Toast.LENGTH_SHORT).show();
                             Log.d(tag,response.body().get(0).title);
-                            recipesByIngredientList= response.body();
+                            ApiResponse.onSuccess(response.body());
                         }
                     }
 
