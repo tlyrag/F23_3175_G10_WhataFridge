@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface GetRecipeByIngredients {
 
-     static final String apiKey = BuildConfig.API_KEY;
+    static final String apiKey = BuildConfig.API_KEY;
     static final String BASE_URL = "https://api.spoonacular.com";
     @Headers("X-API-KEY: " + apiKey)
     @GET("/recipes/findByIngredients")
