@@ -10,10 +10,72 @@
         android:id="@+id/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnFindRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btnTxtFindRecipes"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFindRecipe" />
+
+    <EditText
+        android:id="@+id/editTextFindRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/editTextHintText"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/btnFindRecipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewTitle" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFindRecipe">
+
+        <TextView
+            android:id="@+id/textViewRecipe0"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:gravity="center|top" />
+
+        <TextView
+            android:id="@+id/textViewRecipe1"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:gravity="center|top" />
+
+        <TextView
+            android:id="@+id/textViewRecipe2"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:text="TextView" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
