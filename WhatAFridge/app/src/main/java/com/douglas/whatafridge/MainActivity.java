@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             String ingredients = editTextFindIngred.getText().toString();
             return ingredients;
         } catch (Exception err) {
-            Toast.makeText(this, err.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error in getEditText Method"+err.getMessage(), Toast.LENGTH_SHORT).show();
             editTextFindIngred.setText("");
             return "";
         }
