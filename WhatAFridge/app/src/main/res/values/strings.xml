@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WhatAFridge</string>
+    <string name="btnTxtFindRecipes">Find Recipe!</string>
+    <string name="editTextHintText">Enter Ingredients</string>
+</resources>
