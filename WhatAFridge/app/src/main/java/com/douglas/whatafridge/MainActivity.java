@@ -10,20 +10,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     SpoonacularController api = new SpoonacularController();
     TextView txtTitle;
     ArrayList<TextView> txtRecipes = new ArrayList<>();
-
+    List<Recipe> recipes = new ArrayList<>();
     Button btnFindRecipe;
     EditText editTextFindIngred;
+    ListView listViewRecipes;
 
     /// View Actions and Handlings
     @Override
@@ -32,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Getting View Elements by ID
         txtTitle = findViewById(R.id.TextViewTitle);
-        txtRecipes.add(findViewById(R.id.textViewRecipe0));
-        txtRecipes.add(findViewById(R.id.textViewRecipe1));
-        txtRecipes.add(findViewById(R.id.textViewRecipe2));
         btnFindRecipe = findViewById(R.id.btnFindRecipe);
         editTextFindIngred = findViewById(R.id.editTextFindRecipe);
+        listViewRecipes = findViewById(R.id.ListViewRecipe);
+
 
         try{
         btnFindRecipe.setOnClickListener(view -> {
             String ingredients = getEditText();
+
             getRecipes(this,ingredients);
         });
 
@@ -75,12 +78,15 @@ public class MainActivity extends AppCompatActivity {
             api.getRecipeByIngredient(context, ingredients, 3, new GenericAPIResponse() {
                 @Override
                 public void onSuccess(ArrayList ListObject) {
-                    ArrayList<Recipe> recipes = ListObject;
+                    recipes = ListObject;
 
-                    for(int i =0; i<recipes.size();i++) {
-                        updateRecipe(txtRecipes.get(i),recipes.get(i));
+                    if(recipes.size()==0 || recipes.isEmpty() || recipes ==null) {
+                        Recipe dummyRecipe = new Recipe();
+                        dummyRecipe.title = "No Recipe was FOund";
+                        recipes.add(dummyRecipe);
                     }
-
+                    RecipeListViewAdapterController recipeAdapter = new RecipeListViewAdapterController(recipes);
+                    listViewRecipes.setAdapter(recipeAdapter);
                 }
 
                 @Override
