@@ -21,6 +21,5 @@ public interface GetRecipeByIngredients {
             @Query("limitLicense") boolean limitLicense,
             @Query("ranking") int ranking,
             @Query("ignorePantry") boolean ignorePantry
-
     );
 }
