@@ -1,0 +1,20 @@
+1. log-in page 
+2. sing up page - with other emails -> verification by email(?)
+3. main page - show the menus and generic information - we need to choose :)
+ - use hamburger : user account info, setting(authentication of locatoion, notification and so on)
+ - bottom drawer : Fridge, Recipe, Dashboard, shopping
+ 
+	1) Fridge(2~3 views) : display the stock (minus the amount of the ingredient)
+							-> add items (best before...) 
+	2) Recipe (7~8 views) : find recipes with an ingredient -> display the list -> add favorite list
+							my recipes(display my recipes, share the recipe with friends) 
+							-> add new 
+							-> edit/delete my recipe           	 
+	3) dashboard (3~4 views) : the portion of ingredients(meat, vegitable and so on..)
+								the portion of nutritions
+								calender : ingredients flow(in/out/stock), best before of ingredients list...				   
+	4) shopping (2~3 view) : find groceries (map) based on user location
+							shopping cart : suggestion based on the stock or user can add
+
+
+ 
