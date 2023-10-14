@@ -3,4 +3,6 @@
     <string name="btnTxtFindRecipes">Find Recipe!</string>
     <string name="editTextHintText">Enter Ingredients</string>
     <string name="imgViewRecipeImg">Recipe Image</string>
+    <string name="web_client_id">262299247603-qh4ipvj319u36ertmd8toinahdf89cor.apps.googleusercontent.com</string>
+    <string name="txtLoginWithGoogle">Login with Google</string>
 </resources>
