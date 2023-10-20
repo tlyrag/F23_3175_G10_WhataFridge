@@ -12,6 +12,7 @@ public class Recipe {
     public int usedIngredientCount;
     public int missedIngredientCount;
     public ArrayList<Ingredients> missedIngredients;
+    public ArrayList<Ingredients>extendedIngredients;
     public ArrayList<Ingredients> usedIngredients;
     public ArrayList<Object> unusedIngredients;
     public int likes;
