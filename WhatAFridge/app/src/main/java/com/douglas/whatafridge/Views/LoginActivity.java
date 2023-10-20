@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,20 +26,23 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends WFTemplate {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
-
+    final String TAG = "WTF APP";
     private static final int REQ_ONE_TAP = 2;
     private boolean showOneTapUI = true;
 
     Button btnLoginWithGoogle;
+    Button btnLoginWithoutGoogle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
+        btnLoginWithoutGoogle = findViewById(R.id.btnLoginWithoutGoogle);
+
 
         oneTapClient = Identity.getSignInClient(this);
         signUpRequest = BeginSignInRequest.builder()
@@ -66,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String email = credential.getId(); //email
                                     Toast.makeText(LoginActivity.this, "Email : " +email , Toast.LENGTH_SHORT).show();
 
-                                    Log.d("TAG", "Got ID token.");
+                                    Log.d(TAG, "Got ID token.");
                                 }
                             } catch (ApiException e) {
                                 // ...
@@ -96,10 +100,13 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 // No Google Accounts found. Just continue presenting the signed-out UI.
-                                Log.d("TAG", e.getLocalizedMessage());
+                                Log.d(TAG,"OnTapClient Failure: "+  e.getLocalizedMessage());
                             }
                         });
             }
+        });
+        btnLoginWithoutGoogle.setOnClickListener(view -> {
+            startActivity(new Intent(LoginActivity.this,SearchRecipeActivity.class));
         });
     }
 }
