@@ -8,4 +8,6 @@
     <string name="txtAppTitle">WhatAFridge</string>
     <string name="btnSearchPantry">Search Pantry!</string>
     <string name="textViewSeparator">-------------Or Search By Ingredients-------------</string>>
+    <string name="web_client_id">262299247603-qh4ipvj319u36ertmd8toinahdf89cor.apps.googleusercontent.com</string>
+    <string name="txtLoginWithGoogle">Login with Google</string>
 </resources>
