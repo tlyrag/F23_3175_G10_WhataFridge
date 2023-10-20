@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchRecipe extends WFTemplate {
+public class SearchRecipeActivity extends WFTemplate {
     SpoonacularController api = new SpoonacularController();
     TextView txtTitle;
     ArrayList<TextView> txtRecipes = new ArrayList<>();
