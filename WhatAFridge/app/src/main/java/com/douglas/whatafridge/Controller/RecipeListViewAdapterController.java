@@ -11,11 +11,18 @@ import android.widget.TextView;
 
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RecipeListViewAdapterController extends BaseAdapter {
+    final String TAG ="WTF App";
     List<Recipe> recipeList;
+    TextView txtRecipeID;
+    TextView txtRecipeName;
+    TextView txtRecipeLike;
+    Button btnGetRecipeInfo;
+    ImageView imgRecipe;
 
     public RecipeListViewAdapterController(List<Recipe> recipeList) {
         this.recipeList = recipeList;
@@ -41,24 +48,37 @@ public class RecipeListViewAdapterController extends BaseAdapter {
         if(view==null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recipe_displayer_layout,viewGroup,false);
         }
-        TextView txtRecipeID = view.findViewById(R.id.textViewRecipeID);
-        TextView txtRecipeName = view.findViewById(R.id.textViewRecipeName);
-        TextView txtRecipeLike = view.findViewById(R.id.txtViewRecipeLikes);
-        Button btnGetRecipeInfo = view.findViewById(R.id.btnGetRecipeInfo);
-        Log.d("WTFApp","Recipe Title is:" +recipeList.get(i).title);
-        //ImageView imgRecipe = view.findViewById(R.id.imageViewRecipeImg);
 
+        getIteminView(view);
+        setItemView(i);
+
+        return view;
+    }
+
+    public void getIteminView(View view) {
+        try {
+            txtRecipeID = view.findViewById(R.id.textViewRecipeID);
+            txtRecipeName =view.findViewById(R.id.textViewRecipeName);
+            txtRecipeLike =view.findViewById(R.id.textViewRecipeLikes);
+            imgRecipe= view.findViewById(R.id.imageViewRecipeImg);
+
+        } catch (Exception err) {
+            Log.d(TAG, "getIteminView: " +err.getMessage());
+
+        }
+
+    }
+
+    public  void setItemView(int i ) {
         try{
             txtRecipeID.setText(recipeList.get(i).id + "");
             txtRecipeName.setText(recipeList.get(i).title);
             txtRecipeLike.setText(recipeList.get(i).likes + "");
-            //btnGetRecipeInfo.setText("Get Recipe Info");
-        }
-        catch (Exception err) {
-            Log.d("WTFApp","Failed to load data into ListView:"+err.getMessage());
+            Picasso.get().load(recipeList.get(i).image).into(imgRecipe);
 
+        } catch (Exception err) {
+            Log.d(TAG, "setItemView: " + err.getMessage());
         }
 
-        return view;
     }
 }
