@@ -1,9 +1,9 @@
-package com.douglas.whatafridge;
+package com.douglas.whatafridge.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
 import com.douglas.whatafridge.Controller.*;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
+import com.douglas.whatafridge.R;
 //import com.douglas.whatafridge.Model.*;
 import android.content.Context;
 import android.os.Bundle;
@@ -14,12 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class SearchRecipe extends WFTemplate {
     SpoonacularController api = new SpoonacularController();
     TextView txtTitle;
     ArrayList<TextView> txtRecipes = new ArrayList<>();
@@ -33,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Getting View Elements by ID
-        txtTitle = findViewById(R.id.TextViewTitle);
+
         btnFindRecipe = findViewById(R.id.btnFindRecipe);
         editTextFindIngred = findViewById(R.id.editTextFindRecipe);
         listViewRecipes = findViewById(R.id.ListViewRecipe);
