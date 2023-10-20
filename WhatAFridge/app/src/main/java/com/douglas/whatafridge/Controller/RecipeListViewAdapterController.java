@@ -1,5 +1,7 @@
 package com.douglas.whatafridge.Controller;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
+import com.douglas.whatafridge.Views.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class RecipeListViewAdapterController extends BaseAdapter {
     TextView txtRecipeID;
     TextView txtRecipeName;
     TextView txtRecipeLike;
-    Button btnGetRecipeInfo;
+
     ImageView imgRecipe;
 
     public RecipeListViewAdapterController(List<Recipe> recipeList) {
@@ -61,6 +63,7 @@ public class RecipeListViewAdapterController extends BaseAdapter {
             txtRecipeName =view.findViewById(R.id.textViewRecipeName);
             txtRecipeLike =view.findViewById(R.id.textViewRecipeLikes);
             imgRecipe= view.findViewById(R.id.imageViewRecipeImg);
+
 
         } catch (Exception err) {
             Log.d(TAG, "getIteminView: " +err.getMessage());

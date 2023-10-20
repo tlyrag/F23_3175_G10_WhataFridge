@@ -6,8 +6,11 @@ import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
 import com.douglas.whatafridge.R;
 //import com.douglas.whatafridge.Model.*;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -39,6 +42,7 @@ public class SearchRecipeActivity extends WFTemplate {
         listViewRecipes = findViewById(R.id.ListViewRecipe);
 
 
+     ////////////////////// Search Recipe by Ingredients////////////////
         try{
         btnFindRecipe.setOnClickListener(view -> {
             String ingredients = getEditText();
@@ -48,9 +52,27 @@ public class SearchRecipeActivity extends WFTemplate {
 
 
         } catch(Exception err) {
-            Log.d("WTF App", "Api error"+ err.getMessage());
+            Log.d(TAG, "Api error"+ err.getMessage());
+        }
+        ///////////////////////// Go to Recipe Details///////////////////////////
+
+        try {
+            listViewRecipes.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) ->{
+                int recipeID = recipes.get(position).id;
+                Bundle bundle = new Bundle();
+                bundle.putInt("recipeID",recipeID);
+
+                Intent intent = new Intent(SearchRecipeActivity.this,RecipeDetailActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+
+            });
+        } catch (Exception err) {
+            Log.d(TAG, "onCreate: ");
         }
     }
+
     ////////////////////////////////View Methods/////////////////////////////
 
     /// Get Text in Edit Text and return as a String
@@ -94,7 +116,7 @@ public class SearchRecipeActivity extends WFTemplate {
                 }
             });
         } catch (Exception err) {
-            Log.d("WTF App","Fail on getRecipesMethod:" + err.getMessage());
+            Log.d(TAG,"Fail on getRecipesMethod:" + err.getMessage());
         }
 
     }
