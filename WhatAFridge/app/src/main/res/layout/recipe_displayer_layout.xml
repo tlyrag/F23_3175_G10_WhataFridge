@@ -44,16 +44,28 @@
                 android:text="@string/txtViewRecipeTitle" />
 
             <TextView
-                android:id="@+id/textViewRecipeID"
+                android:id="@+id/textViewRecipeTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Ready In:" />
 
             <TextView
                 android:id="@+id/textViewRecipeLikes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Likes:" />
+
+            <TextView
+                android:id="@+id/textViewRecipePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price Per Serving:" />
+
+            <TextView
+                android:id="@+id/textViewRecipeHealthScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HealthScore" />
 
         </LinearLayout>
     </LinearLayout>
