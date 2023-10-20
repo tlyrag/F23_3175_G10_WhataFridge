@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
 import com.squareup.picasso.Picasso;
@@ -18,10 +16,11 @@ import java.util.List;
 public class RecipeListViewAdapterController extends BaseAdapter {
     final String TAG ="WTF App";
     List<Recipe> recipeList;
-    TextView txtRecipeID;
+    TextView txtRecipeTime;
     TextView txtRecipeName;
     TextView txtRecipeLike;
-    Button btnGetRecipeInfo;
+    TextView txtRecipePrice;
+    TextView txtRecipeHealthScore;
     ImageView imgRecipe;
 
     public RecipeListViewAdapterController(List<Recipe> recipeList) {
@@ -57,10 +56,13 @@ public class RecipeListViewAdapterController extends BaseAdapter {
 
     public void getIteminView(View view) {
         try {
-            txtRecipeID = view.findViewById(R.id.textViewRecipeID);
+            txtRecipeTime = view.findViewById(R.id.textViewRecipeTime);
             txtRecipeName =view.findViewById(R.id.textViewRecipeName);
             txtRecipeLike =view.findViewById(R.id.textViewRecipeLikes);
+            txtRecipeHealthScore=view.findViewById(R.id.textViewRecipeHealthScore);
+            txtRecipePrice = view.findViewById(R.id.textViewRecipePrice);
             imgRecipe= view.findViewById(R.id.imageViewRecipeImg);
+
 
         } catch (Exception err) {
             Log.d(TAG, "getIteminView: " +err.getMessage());
@@ -71,9 +73,11 @@ public class RecipeListViewAdapterController extends BaseAdapter {
 
     public  void setItemView(int i ) {
         try{
-            txtRecipeID.setText(recipeList.get(i).id + "");
+            txtRecipeTime.setText("Ready In:" +recipeList.get(i).readyInMinutes + " Minutes");
             txtRecipeName.setText(recipeList.get(i).title);
-            txtRecipeLike.setText(recipeList.get(i).likes + "");
+            txtRecipeLike.setText("Likes:"+recipeList.get(i).aggregateLikes + "");
+            txtRecipePrice.setText("Price: $" + recipeList.get(i).pricePerServing);
+            txtRecipeHealthScore.setText("HealthScore:"+ recipeList.get(i).healthScore);
             Picasso.get().load(recipeList.get(i).image).into(imgRecipe);
 
         } catch (Exception err) {

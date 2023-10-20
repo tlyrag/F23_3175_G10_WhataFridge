@@ -11,4 +11,6 @@
     <string name="web_client_id">262299247603-qh4ipvj319u36ertmd8toinahdf89cor.apps.googleusercontent.com</string>
     <string name="txtLoginWithGoogle">Login with Google</string>
     <string name="btnLoginWithougGoogle">Proceed without Login</string>
+    <string name="textViewIngredientsTitle">Ingredients\n</string>
+    <string name="txtRecipeDetailPreparation">How to Prepare</string>
 </resources>

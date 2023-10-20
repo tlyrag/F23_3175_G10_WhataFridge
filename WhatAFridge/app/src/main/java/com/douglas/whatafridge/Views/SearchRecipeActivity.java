@@ -6,8 +6,11 @@ import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
 import com.douglas.whatafridge.R;
 //import com.douglas.whatafridge.Model.*;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -39,53 +42,93 @@ public class SearchRecipeActivity extends WFTemplate {
         listViewRecipes = findViewById(R.id.ListViewRecipe);
 
 
+        /**
+         * @author: Thiago
+         *
+         * FindRecipeBy Ingredient Button Handler
+         * Call Get Recipe By Ingredients Method
+         */
+
         try{
-        btnFindRecipe.setOnClickListener(view -> {
-            String ingredients = getEditText();
-
-            getRecipes(this,ingredients);
-        });
-
-
+            btnFindRecipe.setOnClickListener(view -> {
+                String ingredients = getEditText();
+                getRecipes(this,ingredients);
+            });
         } catch(Exception err) {
-            Log.d("WTF App", "Api error"+ err.getMessage());
+            Log.d(TAG, "Api error"+ err.getMessage());
+        }
+        /**
+         * @author: Thiago
+         * ListView Recipes Handler
+         * Creates a bundle with the ID of the selected Item
+         * Add ID to next Intent
+         * Open Recipe Detail Activity
+         */
+
+        try {
+            listViewRecipes.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) ->{
+                int recipeID = recipes.get(position).id;
+                Bundle bundle = new Bundle();
+                bundle.putInt("recipeID",recipeID);
+                Intent intent = new Intent(SearchRecipeActivity.this,RecipeDetailActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            });
+        } catch (Exception err) {
+            Log.d(TAG, "onCreate: ");
         }
     }
+
     ////////////////////////////////View Methods/////////////////////////////
 
-    /// Get Text in Edit Text and return as a String
+    /**
+     * @author: Thiago
+     * Method will get what is written in Edit Text and return the ingredients
+     * Pop up a toast in case its empty and button was pressed
+     */
     public  String getEditText() {
         try {
-            String ingredients = editTextFindIngred.getText().toString();
+            String ingredients = editTextFindIngred.getText().toString().trim();
+
+            if(ingredients.isEmpty() || ingredients.equals("")) {
+                throw new Exception();
+            }
             return ingredients;
         } catch (Exception err) {
-            Toast.makeText(this, "Error in getEditText Method"+err.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingredients cannot be Empty"+err.getMessage(), Toast.LENGTH_SHORT).show();
             editTextFindIngred.setText("");
             return "";
         }
     }
 
-    /// Update a TextView based on Recipes
-    public void updateRecipe(TextView txt,Recipe recipe) {
-        txt.setText(recipe.title);
-    }
 
 
-    /////// Call Get Recipe API and return the Promisse
+    /**
+     * @author: Thiago
+     * Calls Get Recipe by Ingredients API using the ingredient list in the Edit Text
+     * If no recipe is find will result in a blank List
+     *
+     * Once API is successfull will call the Get Recipe by ID API
+     */
     public void getRecipes(Context context, String ingredients) {
         try {
             api.getRecipeByIngredient(context, ingredients, 3, new GenericAPIResponse() {
                 @Override
                 public void onSuccess(ArrayList ListObject) {
-                    recipes = ListObject;
 
-                    if(recipes.size()==0 || recipes.isEmpty() || recipes ==null) {
+
+                    if(ListObject.size()==0 || ListObject.isEmpty() || ListObject ==null) {
                         Recipe dummyRecipe = new Recipe();
-                        dummyRecipe.title = "No Recipe was FOund";
+                        dummyRecipe.title = "No Recipe was Found";
                         recipes.add(dummyRecipe);
+                    } else {
+                        recipes = ListObject;
                     }
-                    RecipeListViewAdapterController recipeAdapter = new RecipeListViewAdapterController(recipes);
-                    listViewRecipes.setAdapter(recipeAdapter);
+
+                    String ids = getRecipeIds();
+
+                    getRecipeDetails(context,ids);
+
                 }
 
                 @Override
@@ -94,9 +137,58 @@ public class SearchRecipeActivity extends WFTemplate {
                 }
             });
         } catch (Exception err) {
-            Log.d("WTF App","Fail on getRecipesMethod:" + err.getMessage());
+            Log.d(TAG,"Fail on getRecipesMethod:" + err.getMessage());
         }
 
     }
+    /**
+     * @author: Thiago
+     * Creates a String with all the ids in the Recipe List separated by ,
+     */
+    public String getRecipeIds() {
+        StringBuilder recipeIds = new StringBuilder();
+
+        if (recipes!=null&& !recipes.isEmpty()) {
+            for (int i =0;i<recipes.size();i++) {
+                recipeIds.append(recipes.get(i).id);
+                //Checking if it is not the last recipe
+                if(i!=recipes.size()-1) {
+                    recipeIds.append(",");
+                }
+
+            }
+        }
+
+        return  recipeIds.toString();
+    }
+    /**
+     * @author: Thiago
+     * Call api Get RecipeBy ID API to grab the detail of each Recipe
+     * Populates the Adapter with the correct information about each recipe
+     */
+    public void getRecipeDetails(Context context,String ids) {
+
+        api.getRecipeByID(context,ids,new GenericAPIResponse() {
+                    @Override
+                    public void onSuccess(ArrayList ListObject) {
+                        if(ListObject.size()==0 || ListObject.isEmpty() || ListObject ==null) {
+                            Recipe dummyRecipe = new Recipe();
+                            dummyRecipe.title = "No Recipe was Found";
+                            recipes.add(dummyRecipe);
+                        } else {
+                            recipes = ListObject;
+                            RecipeListViewAdapterController recipeAdapter = new RecipeListViewAdapterController(recipes);
+                            listViewRecipes.setAdapter(recipeAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFail(String ErrorMessage) {
+
+                    }
+                }
+        );
+    }
+
 
 }

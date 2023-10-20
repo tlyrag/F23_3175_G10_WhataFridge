@@ -29,7 +29,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class LoginActivity extends WFTemplate {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
-    final String TAG = "WTF APP";
+
     private static final int REQ_ONE_TAP = 2;
     private boolean showOneTapUI = true;
 
