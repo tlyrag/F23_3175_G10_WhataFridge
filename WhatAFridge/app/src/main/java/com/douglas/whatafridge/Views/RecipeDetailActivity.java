@@ -57,7 +57,7 @@ public class RecipeDetailActivity extends WFTemplate {
         StringBuilder ingredient = new StringBuilder();
 
         for(int i =0; i<ingredientsList.size();i++) {
-            ingredient.append( "Ingredient:" +ingredientsList.get(i).name + ingredientsList.get(i).amount +" " + ingredientsList.get(i).unit + "\n");
+            ingredient.append( i+1+" : " + ingredientsList.get(i).amount +" " + ingredientsList.get(i).unit +" of "+ingredientsList.get(i).name +" "  + "\n");
         }
         return ingredient.toString();
 
