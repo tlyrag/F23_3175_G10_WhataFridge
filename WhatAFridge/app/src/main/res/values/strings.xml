@@ -13,4 +13,10 @@
     <string name="btnLoginWithougGoogle">Proceed without Login</string>
     <string name="textViewIngredientsTitle">Ingredients\n</string>
     <string name="txtRecipeDetailPreparation">How to Prepare</string>
+    <string name="txtOr">Or</string>
+    <string name="txtLogin">Login</string>
+    <string name="txtLoingIdHint">Enter your Username/Email</string>
+    <string name="txtPasswordHint">Enter Your Password</string>
+    <string name="txtForgetPassword">Forget Password?</string>
+    <string name="txtSignUp">Signup</string>
 </resources>
