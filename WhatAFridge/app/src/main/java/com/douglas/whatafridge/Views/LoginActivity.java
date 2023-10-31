@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,10 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.douglas.whatafridge.Controller.CryptoUtil;
 import com.douglas.whatafridge.R;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
@@ -28,7 +25,9 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import javax.crypto.Cipher;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends WFTemplate {
     SignInClient oneTapClient;
@@ -44,17 +43,18 @@ public class LoginActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //sample source for encrypt and decrypt
-        EditText editTextUserId = findViewById(R.id.editTextUserId);
-        EditText editTextPassword = findViewById(R.id.editTextPassword);
-        CryptoUtil cryptoUtil = new CryptoUtil();
-        String secretKey = cryptoUtil.SECRET_KEY;
+        //simple SHA
+        byte[] message = "ddd".getBytes(StandardCharsets.UTF_8);
+        MessageDigest md = null;
         try {
-            editTextUserId.setText(cryptoUtil.encryptAES256toHex("anytesttext", secretKey));
-            Toast.makeText(this, cryptoUtil.decryptAES256fromHex("8510a23203609101c5e6efabba649835", secretKey), Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+        byte[] digest = md.digest(message);
+        String text = new String(digest, StandardCharsets.UTF_8);
+
+
 
         //hide actionbar
         if (getSupportActionBar() != null) {
