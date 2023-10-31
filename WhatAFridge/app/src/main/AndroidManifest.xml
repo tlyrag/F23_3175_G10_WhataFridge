@@ -15,6 +15,9 @@
         android:theme="@style/Theme.WhatAFridge"
         tools:targetApi="31">
         <activity
+            android:name=".Views.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Views.RecipeDetailActivity"
             android:exported="false" />
         <activity

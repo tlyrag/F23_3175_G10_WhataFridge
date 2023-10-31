@@ -19,4 +19,25 @@
     <string name="txtPasswordHint">Enter Your Password</string>
     <string name="txtForgetPassword">Forget Password?</string>
     <string name="txtSignUp">Signup</string>
+    <string name="txtUserID">UserID/Email</string>
+    <string name="txtProfileNameHint">Enter Your Name</string>
+    <string name="txtProfileAgeHint">Enter Your Age</string>
+    <string name="txtProfileHeightHint">Enter Your Height</string>
+    <string name="txtProfileName">Name</string>
+    <string name="txtProfileAge">Age</string>
+    <string name="txtProfileHeight">Height</string>
+    <string name="txtProfileWeight">Weight</string>
+    <string name="txtProfileWeightHint">Enter Your Weight</string>
+    <string name="txtGlutenFree">GlutenFree</string>
+    <string name="txtProfileTypeVegetarian">Type Of Vegetarian</string>
+    <string name="txtSave">Save</string>
+    <string-array name="typesOfVegetarians">
+        <item>No Vegetarian</item>
+        <item>Lacto-ovo vegetarian</item>
+        <item>Lacto-vegetarian</item>
+        <item>Ovo-vegetarian</item>
+        <item>Flexitarian</item>
+        <item>Pescatarian</item>
+        <item>Vegan</item>
+    </string-array>
 </resources>
