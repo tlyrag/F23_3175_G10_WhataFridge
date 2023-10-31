@@ -19,6 +19,7 @@
     <string name="txtPasswordHint">Enter Your Password</string>
     <string name="txtForgetPassword">Forget Password?</string>
     <string name="txtSignUp">Signup</string>
+
     <string name="txtUserID">UserID/Email</string>
     <string name="txtProfileNameHint">Enter Your Name</string>
     <string name="txtProfileAgeHint">Enter Your Age</string>
@@ -40,4 +41,5 @@
         <item>Pescatarian</item>
         <item>Vegan</item>
     </string-array>
+
 </resources>

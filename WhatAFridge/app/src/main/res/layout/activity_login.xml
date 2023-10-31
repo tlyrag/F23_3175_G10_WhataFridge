@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Views.LoginActivity">
 
+
     <ImageView
         android:id="@+id/imgViewLogo"
         android:layout_width="201dp"
@@ -17,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
+
 
     <TextView
         android:id="@+id/txtViewLogin"
