@@ -40,6 +40,11 @@ public class LoginActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        //hide actionbar
         btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
         btnLoginWithoutGoogle = findViewById(R.id.btnLoginWithoutGoogle);
 
