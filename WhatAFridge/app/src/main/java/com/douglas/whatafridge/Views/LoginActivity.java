@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +25,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class LoginActivity extends WFTemplate {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
@@ -40,14 +43,28 @@ public class LoginActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //simple SHA
+        byte[] message = "ddd".getBytes(StandardCharsets.UTF_8);
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] digest = md.digest(message);
+        String text = new String(digest, StandardCharsets.UTF_8);
+
+
+
+        //hide actionbar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
-        //hide actionbar
+
+        //google one tap login
         btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
         btnLoginWithoutGoogle = findViewById(R.id.btnLoginWithoutGoogle);
-
 
         oneTapClient = Identity.getSignInClient(this);
         signUpRequest = BeginSignInRequest.builder()
