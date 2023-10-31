@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.douglas.whatafridge.Controller.CryptoUtil;
 import com.douglas.whatafridge.R;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
@@ -25,6 +27,8 @@ import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import javax.crypto.Cipher;
 
 public class LoginActivity extends WFTemplate {
     SignInClient oneTapClient;
@@ -40,14 +44,27 @@ public class LoginActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //sample source for encrypt and decrypt
+        EditText editTextUserId = findViewById(R.id.editTextUserId);
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        CryptoUtil cryptoUtil = new CryptoUtil();
+        String secretKey = cryptoUtil.SECRET_KEY;
+        try {
+            editTextUserId.setText(cryptoUtil.encryptAES256toHex("anytesttext", secretKey));
+            Toast.makeText(this, cryptoUtil.decryptAES256fromHex("8510a23203609101c5e6efabba649835", secretKey), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        //hide actionbar
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
-        //hide actionbar
+
+        //google one tap login
         btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
         btnLoginWithoutGoogle = findViewById(R.id.btnLoginWithoutGoogle);
-
 
         oneTapClient = Identity.getSignInClient(this);
         signUpRequest = BeginSignInRequest.builder()
