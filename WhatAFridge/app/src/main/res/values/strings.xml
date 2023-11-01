@@ -32,6 +32,17 @@
     <string name="txtGlutenFree">GlutenFree</string>
     <string name="txtProfileTypeVegetarian">Type Of Vegetarian</string>
     <string name="txtSave">Save</string>
+    <string name="textViewMyRecipeTitle">Add Recipe\n</string>
+    <string name="textViewMyRecipeName">Recipe Name</string>
+    <string name="editTextMyRecipeName">Add Recipe Name</string>
+    <string name="btnMyRecipe" >My Recipe Page</string>
+    <string name="btnSearchRecipe">Search Recipe</string>
+    <string name="editTextMyRecipeSummary">Please enter Recipe Summary</string>
+    <string name="editTextMyRecipeInstructions">Please Enter Recipe Instructions</string>
+    <string name="textViewMyRecipeNumberOfIngredients">Enter Number of Ingredients</string>
+    <string name="editTextIngredientName">Ingredient Name</string>
+    <string name="editTextIngredientQtd">Enter Qtd</string>
+    <string name="btnAddIngreds">Add</string>>
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>
         <item>Lacto-ovo vegetarian</item>

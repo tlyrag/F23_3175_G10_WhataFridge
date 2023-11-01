@@ -1,12 +1,10 @@
 package com.douglas.whatafridge.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.douglas.whatafridge.R;
 
-public class ProfileActivity extends WFTemplate {
+public class ProfileActivity extends WTFemplate {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
