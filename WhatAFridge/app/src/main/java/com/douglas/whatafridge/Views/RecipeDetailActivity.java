@@ -1,8 +1,7 @@
 package com.douglas.whatafridge.Views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,16 +13,19 @@ import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
 import com.douglas.whatafridge.R;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeDetailActivity extends WFTemplate {
+public class RecipeDetailActivity extends WTFemplate {
     SpoonacularController api = new SpoonacularController();
     TextView textViewRecipeTitle;
+    TextView textViewIngredientsTitle;
+    TextView textViewSummaryTitle;
+    TextView textViewRecipeInstructionsTitle;
     TextView textViewIngredientList;
-    TextView textViewPreparation;
+    TextView textViewSummary;
+    TextView textViewRecipeInstructions;
+
     ImageView imageViewRecipe;
     String recipeID;
     List<Recipe> recipes = new ArrayList<>();
@@ -42,14 +44,21 @@ public class RecipeDetailActivity extends WFTemplate {
     public void getViewItems() {
         textViewRecipeTitle = findViewById(R.id.textViewRecipeDetailTitle);
         textViewIngredientList = findViewById(R.id.textViewIngredientList);
-        textViewPreparation = findViewById(R.id.textViewRecipeDetailsPreparation);
+        textViewSummary = findViewById(R.id.textViewRecipeDetailsSummary);
+        textViewIngredientsTitle = findViewById(R.id.textViewIngredientsTitle);
         imageViewRecipe = findViewById(R.id.imageViewRecipeDetailImage);
+        textViewSummaryTitle = findViewById(R.id.textViewRecipeDetailSummaryTitle);
+        textViewRecipeInstructionsTitle = findViewById(R.id.textViewRecipeInstructionTitle);
+        textViewRecipeInstructions=findViewById(R.id.textViewRecipeInstruction);
     }
-    public void setViewItemInfo(String recipeName, String ingredients, String preparation, String imgUrl) {
+    public void setViewItemInfo(String recipeName, String ingredients, String summary, String imgUrl,String instruction) {
+        textViewIngredientsTitle.setText("Ingredients");
+        textViewSummaryTitle.setText("Summary");
+        textViewRecipeInstructionsTitle.setText("Instruction");
         textViewRecipeTitle.setText(recipeName);
-
         textViewIngredientList.setText(ingredients);
-        textViewPreparation.setText(preparation);
+        textViewSummary.setText(Html.fromHtml(summary));
+        textViewRecipeInstructions.setText(Html.fromHtml(instruction));
         Picasso.get().load(imgUrl).into(imageViewRecipe);
 
     }
@@ -70,7 +79,7 @@ public class RecipeDetailActivity extends WFTemplate {
                     recipes = ListObject;
                     Recipe currentRecipe = recipes.get(0);
                     String ingredients = createIngredintText(currentRecipe.extendedIngredients);
-                    setViewItemInfo(currentRecipe.title,ingredients,currentRecipe.summary, currentRecipe.image);
+                    setViewItemInfo(currentRecipe.title,ingredients,currentRecipe.summary, currentRecipe.image,currentRecipe.instructions);
                 }
 
                 @Override
