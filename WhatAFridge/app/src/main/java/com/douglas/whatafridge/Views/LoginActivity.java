@@ -29,7 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class LoginActivity extends WFTemplate {
+public class LoginActivity extends WTFemplate {
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
 
@@ -128,7 +128,7 @@ public class LoginActivity extends WFTemplate {
             }
         });
         btnLoginWithoutGoogle.setOnClickListener(view -> {
-            startActivity(new Intent(LoginActivity.this,SearchRecipeActivity.class));
+            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
         });
     }
 }

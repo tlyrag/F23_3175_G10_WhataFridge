@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeDetailActivity extends WFTemplate {
+public class RecipeDetailActivity extends WTFemplate {
     SpoonacularController api = new SpoonacularController();
     TextView textViewRecipeTitle;
     TextView textViewIngredientsTitle;
