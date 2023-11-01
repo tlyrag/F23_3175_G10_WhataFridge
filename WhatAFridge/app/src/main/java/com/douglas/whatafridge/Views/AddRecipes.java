@@ -16,7 +16,7 @@ import com.douglas.whatafridge.Controller.AddRecipeRecyclerViewController;
 import com.douglas.whatafridge.Controller.RecipeListViewAdapterController;
 import com.douglas.whatafridge.R;
 
-public class AddRecipes extends AppCompatActivity {
+public class AddRecipes extends WTFemplate {
     public final String TAG = "WTF APP";
     EditText editTextRecipeName;
     EditText editTextRecipeSummary;

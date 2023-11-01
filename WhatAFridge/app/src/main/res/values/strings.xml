@@ -40,7 +40,7 @@
     <string name="editTextMyRecipeSummary">Please enter Recipe Summary</string>
     <string name="editTextMyRecipeInstructions">Please Enter Recipe Instructions</string>
     <string name="textViewMyRecipeNumberOfIngredients">Enter Number of Ingredients</string>
-    <string name="editTextIngredientName">Please Enter Ingredient Name\n\n</string>
+    <string name="editTextIngredientName">Ingredient Name</string>
     <string name="editTextIngredientQtd">Enter Qtd</string>
     <string name="btnAddIngreds">Add</string>>
     <string-array name="typesOfVegetarians">
