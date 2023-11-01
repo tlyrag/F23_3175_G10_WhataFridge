@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Views.SearchRecipeActivity">
 
-    <TextView
-        android:id="@+id/textViewSeparator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/textViewSeparator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearchPantry" />
-
     <Button
         android:id="@+id/btnSearchPantry"
         android:layout_width="wrap_content"
@@ -43,15 +33,13 @@
         android:id="@+id/editTextFindRecipe"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/editTextHintText"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/btnFindRecipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSeparator" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/ListViewRecipe"
@@ -66,5 +54,47 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFindRecipe" />
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextFindRecipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchPantry"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintHorizontal_bias="0.0">
+
+        <View
+            android:id="@+id/viewLineLeft"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_weight="2"
+            android:background="#666699" />
+
+        <TextView
+            android:id="@+id/txtViewOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/txtOr"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/viewLineRight"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_weight="2"
+            android:background="#666699" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
