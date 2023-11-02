@@ -54,7 +54,7 @@ public class AddRecipeRecyclerViewController extends RecyclerView.Adapter<AddRec
 
     public class ImageViewerHolder extends RecyclerView.ViewHolder {
         EditText editTextIngredientName;
-        EditText editTextIngredientQtd;
+
         public ImageViewerHolder(@NonNull View itemView) {
             super(itemView);
             getItemView(itemView);
@@ -63,10 +63,15 @@ public class AddRecipeRecyclerViewController extends RecyclerView.Adapter<AddRec
         public void getItemView(View itemView) {
             try {
                 editTextIngredientName = itemView.findViewById(R.id.editTextIngredientName);
-                editTextIngredientQtd = itemView.findViewById(R.id.editTextIngredientQtd);
+
             } catch (Exception err) {
                 Log.d(TAG, "getItemView: ");
             }
         }
+        public String getIngredient() {
+            String ingredient = editTextIngredientName.getText().toString();
+            return ingredient;
+        }
+
     }
 }
