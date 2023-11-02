@@ -15,4 +15,11 @@ public class Ingredients {
     public ArrayList<String> meta;
     public String extendedName;
     public String image;
+
+    @Override
+    public String toString() {
+        return "Ingredients{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
