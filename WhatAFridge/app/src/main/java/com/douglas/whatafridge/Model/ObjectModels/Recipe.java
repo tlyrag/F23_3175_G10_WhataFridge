@@ -49,4 +49,21 @@ public class Recipe {
     public ArrayList<Object> analyzedInstructions;
     public Object originalId;
     public String spoonacularSourceUrl;
+    public Recipe() {}
+    public Recipe(String title, ArrayList<Ingredients> usedIngredients, String summary, String instructions) {
+        this.title = title;
+        this.usedIngredients = usedIngredients;
+        this.summary = summary;
+        this.instructions = instructions;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "title='" + title + '\'' +
+                ", usedIngredients=" + usedIngredients +
+                ", summary='" + summary + '\'' +
+                ", instructions='" + instructions + '\'' +
+                '}';
+    }
 }

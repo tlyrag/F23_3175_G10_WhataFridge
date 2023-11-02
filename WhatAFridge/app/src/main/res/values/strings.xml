@@ -42,7 +42,8 @@
     <string name="textViewMyRecipeNumberOfIngredients">Enter Number of Ingredients</string>
     <string name="editTextIngredientName">Ingredient Name</string>
     <string name="editTextIngredientQtd">Enter Qtd</string>
-    <string name="btnAddIngreds">Add</string>>
+    <string name="btnAddIngreds">Add</string>
+    <string name="btnAddRecipe">Add Recipe</string>>
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>
         <item>Lacto-ovo vegetarian</item>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<ScrollView -->
-<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:fillViewport="false"-->
-<!--    android:orientation="vertical"-->
-<!--    android:padding="10dp">-->
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="false"
@@ -23,23 +21,33 @@
         android:id="@+id/textViewMyRecipeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:text="@string/textViewMyRecipeTitle"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/textViewMyRecipeTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btnAddRecipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientRecyclerView" />
 
     <EditText
         android:id="@+id/editTextMyRecipeName"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/editTextMyRecipeName"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipeTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRecipeMain" />
 
     <EditText
         android:id="@+id/editTextMyRecipeSummary"
@@ -69,20 +77,22 @@
 
     <EditText
         android:id="@+id/editTextNumberOfIngred"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="128dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/textViewMyRecipeNumberOfIngredients"
         android:inputType="numberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddIngreds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeInstruction" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingredientRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="349dp"
+        android:layout_height="250dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
@@ -96,9 +106,51 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="128dp"
         android:text="@string/btnAddIngreds"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberOfIngred"
         app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeInstruction" />
 
+    <ImageView
+        android:id="@+id/imageViewRecipeMain"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipeTitle"
+        app:srcCompat="@drawable/recipe_img" />
+
+    <ImageView
+        android:id="@+id/imageViewRecipeInstruction"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeSummary"
+        app:srcCompat="@drawable/recipe_instruction_img" />
+
+    <ImageView
+        android:id="@+id/imageViewRecipeName"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRecipeMain"
+        app:srcCompat="@drawable/recipe_name_img" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeName"
+        app:srcCompat="@drawable/recipe_summary_img" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--</ScrollView>-->
+</ScrollView>
