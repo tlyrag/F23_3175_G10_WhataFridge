@@ -3,6 +3,7 @@ package com.douglas.whatafridge.Views;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +18,6 @@ import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddRecipes extends WTFemplate {
     public final String TAG = "WTF APP";
@@ -41,7 +41,9 @@ public class AddRecipes extends WTFemplate {
 
         btnaddRecipe.setOnClickListener(view -> {
             if(createRecipeObj()) {
-                addDataToDB(myRecipe);
+                long id = addDataToDB(myRecipe);
+                Intent recipeDetail = createBundle(id);
+                startActivity(recipeDetail);
             };
 
             //Toast.makeText(this, myRecipe+"", Toast.LENGTH_SHORT).show();
@@ -108,7 +110,7 @@ public class AddRecipes extends WTFemplate {
         myRecipe = new Recipe(recipeName,ingredientsList,recipeSummary,recipeInstructions);
         return true;
     }
-    public void addDataToDB(Recipe recipe) {
+    public long addDataToDB(Recipe recipe) {
         StringBuilder RecipeIngredients = new StringBuilder();
 
         for(int i =0;i<recipe.usedIngredients.size();i++) {
@@ -118,7 +120,16 @@ public class AddRecipes extends WTFemplate {
                 RecipeIngredients.append(",");
             }
         }
-        Toast.makeText(this, recipe.title+" Successfully Added to DB", Toast.LENGTH_SHORT).show();
-        db.addNewCourse(recipe.title,recipe.summary,recipe.instructions,RecipeIngredients.toString());
+        //Toast.makeText(this, recipe.title+" Successfully Added to DB", Toast.LENGTH_SHORT).show();
+        long id = db.addNewRecipe(recipe.title,recipe.summary,recipe.instructions,RecipeIngredients.toString());
+        return id;
+    }
+    public Intent createBundle(long id) {
+        Intent recipeDetail = new Intent(this, RecipeDetailActivity.class);
+        Bundle recipeBundle = new Bundle();
+        recipeBundle.putLong("id",id);
+        recipeBundle.putBoolean("isMyRecipe",true);
+        recipeDetail.putExtras(recipeBundle);
+        return recipeDetail;
     }
 }
