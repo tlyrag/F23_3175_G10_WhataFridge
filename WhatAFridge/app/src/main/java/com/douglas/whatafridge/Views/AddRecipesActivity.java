@@ -19,7 +19,7 @@ import com.douglas.whatafridge.R;
 
 import java.util.ArrayList;
 
-public class AddRecipes extends WTFemplate {
+public class AddRecipesActivity extends WTFemplate {
     public final String TAG = "WTF APP";
     EditText editTextRecipeName;
     EditText editTextRecipeSummary;
@@ -37,7 +37,7 @@ public class AddRecipes extends WTFemplate {
         setContentView(R.layout.activity_add_recipe);
         getItemView();
         createRecyclerView();
-        db = new DBController(AddRecipes.this);
+        db = new DBController(AddRecipesActivity.this);
 
         btnaddRecipe.setOnClickListener(view -> {
             if(createRecipeObj()) {

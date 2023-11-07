@@ -11,6 +11,7 @@ import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBController extends SQLiteOpenHelper {
 
@@ -26,6 +27,7 @@ public class DBController extends SQLiteOpenHelper {
 
     private static final String INSTRUCTION_COL = "instruction";
     private static final String INGREDIENTS_COL = "ingredients";
+
 
     public DBController(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -86,12 +88,7 @@ public class DBController extends SQLiteOpenHelper {
             Cursor cursorRecipe = db.rawQuery(query,null);
 
             if(cursorRecipe!=null && cursorRecipe.moveToFirst()) {
-                String recipeName = cursorRecipe.getString(1);
-                String recipeSummary = cursorRecipe.getString(2);
-                String recipeInstruction = cursorRecipe.getString(3);
-                String recipeIngredients = cursorRecipe.getString(4);
-                ArrayList<Ingredients> myIngredList = createIngredientList(recipeIngredients);
-                Recipe myRecipe = new Recipe(recipeName,myIngredList,recipeSummary,recipeInstruction);
+                Recipe myRecipe = createRecipe(cursorRecipe);
                 return myRecipe;
             } else {
                 Recipe dummyRecipe = new Recipe();
@@ -107,6 +104,52 @@ public class DBController extends SQLiteOpenHelper {
             return  dummyRecipe;
         }
  
+    }
+
+    public List<Recipe> getAllRecipes() {
+        try{
+            //Log.d(TAG, "getRecipeByID: Searching for recipe Index:" + id);
+            // Intanciating variables and database
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "Select * From " + TABLE_NAME;
+            Cursor cursorRecipe = db.rawQuery(query,null);
+            List<Recipe> recipeList = new ArrayList<>();
+
+            // Checking and treating first line of response
+            if(cursorRecipe!=null && cursorRecipe.moveToFirst()) {
+                Recipe myRecipe = createRecipe(cursorRecipe);
+                recipeList.add(myRecipe);
+
+            } else {
+                Recipe dummyRecipe = new Recipe();
+                dummyRecipe.title = "Unable to find recipes";
+                recipeList.add(dummyRecipe);
+                return recipeList;
+            }
+            // Loping through database and grabbing the rest of the data
+            while (cursorRecipe.moveToNext()) {
+                recipeList.add(createRecipe(cursorRecipe));
+            }
+            cursorRecipe.close();
+            return recipeList;
+
+        } catch (Exception err) {
+            Log.d(TAG, "getRecipeByID:Failed to get Recipe from database" +err.getMessage());
+            Recipe dummyRecipe = new Recipe();
+            List<Recipe> recipeList = new ArrayList<>();
+            dummyRecipe.title = "Unable to find recipe";
+            recipeList.add(dummyRecipe);
+            return recipeList;
+        }
+    }
+    public Recipe createRecipe(Cursor cursor) {
+        String recipeName = cursor.getString(1);
+        String recipeSummary = cursor.getString(2);
+        String recipeInstruction = cursor.getString(3);
+        String recipeIngredients = cursor.getString(4);
+        ArrayList<Ingredients> myIngredList = createIngredientList(recipeIngredients);
+        Recipe myRecipe = new Recipe(recipeName,myIngredList,recipeSummary,recipeInstruction);
+        return myRecipe;
     }
     public ArrayList<Ingredients> createIngredientList(String ingredients) {
         String[] ingredArr =ingredients.split(",");
