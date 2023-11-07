@@ -9,6 +9,7 @@ import com.douglas.whatafridge.R;
 public class HomePageActivity extends WTFemplate {
     Button btnMyRecipe;
     Button btnSearchRecipe;
+    Button btnAddRecipe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,11 @@ public class HomePageActivity extends WTFemplate {
         });
 
         btnMyRecipe.setOnClickListener(view -> {
-            Intent newIntent = new Intent(this, AddRecipes.class);
+            Intent newIntent = new Intent(this, MyRecipesActivity.class);
+            startActivity(newIntent);
+        });
+        btnAddRecipe.setOnClickListener(view -> {
+            Intent newIntent = new Intent(this, AddRecipesActivity.class);
             startActivity(newIntent);
         });
     }
@@ -29,6 +34,7 @@ public class HomePageActivity extends WTFemplate {
     public void getItemViews() {
         btnMyRecipe = findViewById(R.id.btnMyRecipe);
         btnSearchRecipe= findViewById(R.id.btnSearchRecipe);
+        btnAddRecipe = findViewById(R.id.btnAddRecipeAct);
     }
 
 }

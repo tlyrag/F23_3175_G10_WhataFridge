@@ -35,7 +35,7 @@
     <string name="textViewMyRecipeTitle">Add Recipe\n</string>
     <string name="textViewMyRecipeName">Recipe Name</string>
     <string name="editTextMyRecipeName">Add Recipe Name</string>
-    <string name="btnMyRecipe" >My Recipe Page</string>
+    <string name="btnMyRecipe">My Recipe Page</string>
     <string name="btnSearchRecipe">Search Recipe</string>
     <string name="editTextMyRecipeSummary">Please enter Recipe Summary</string>
     <string name="editTextMyRecipeInstructions">Please Enter Recipe Instructions</string>
@@ -43,7 +43,9 @@
     <string name="editTextIngredientName">Ingredient Name</string>
     <string name="editTextIngredientQtd">Enter Qtd</string>
     <string name="btnAddIngreds">Add</string>
-    <string name="btnAddRecipe">Add Recipe</string>>
+    <string name="btnAddRecipe">Add Recipe</string>
+    <string name="txtViewMyRecipeTitle">My Recipes</string>
+    <string name="btnAddRecipeAct">Add Recipe</string>>
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>
         <item>Lacto-ovo vegetarian</item>
