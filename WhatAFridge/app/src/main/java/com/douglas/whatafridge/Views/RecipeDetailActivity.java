@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.douglas.whatafridge.Controller.DBController;
 import com.douglas.whatafridge.Controller.SpoonacularController;
 import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
@@ -28,18 +29,33 @@ public class RecipeDetailActivity extends WTFemplate {
 
     ImageView imageViewRecipe;
     String recipeID;
+    long myRecipeID;
+    boolean isMyRecipe;
+    DBController db;
     List<Recipe> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
+         db = new DBController(this);
         getExtraData();
         getViewItems();
-        getRecipeDetails();
+        Log.d(TAG, "onCreate: isMyRecipe is:" + isMyRecipe);
+        if(isMyRecipe) {
+            Log.d(TAG, "onCreate: Getting my RecipeID");
+            getMyRecipe(myRecipeID);
+        } else {
+            getRecipeDetailsApi();
+        }
+
     }
     public void getExtraData() {
         Bundle bundle = getIntent().getExtras();
-        recipeID =  Integer.toString(bundle.getInt("recipeID"))  ;
+        recipeID =  Integer.toString(bundle.getInt("recipeID", Integer.parseInt("0"))) ;
+        myRecipeID = bundle.getLong("id",0);
+        isMyRecipe = bundle.getBoolean("isMyRecipe",false);
+
+
     }
     public void getViewItems() {
         textViewRecipeTitle = findViewById(R.id.textViewRecipeDetailTitle);
@@ -62,23 +78,47 @@ public class RecipeDetailActivity extends WTFemplate {
         Picasso.get().load(imgUrl).into(imageViewRecipe);
 
     }
-    public String createIngredintText(ArrayList<Ingredients> ingredientsList) {
-        StringBuilder ingredient = new StringBuilder();
 
-        for(int i =0; i<ingredientsList.size();i++) {
-            ingredient.append( i+1+" : " + ingredientsList.get(i).amount +" " + ingredientsList.get(i).unit +" of "+ingredientsList.get(i).name +" "  + "\n");
+    /**
+     * @author Thiago
+     *
+     * Overloaded mehtod without image
+     */
+    public void setViewItemInfo(String recipeName, String ingredients, String summary,String instruction) {
+        textViewIngredientsTitle.setText("Ingredients");
+        textViewSummaryTitle.setText("Summary");
+        textViewRecipeInstructionsTitle.setText("Instruction");
+        textViewRecipeTitle.setText(recipeName);
+        textViewIngredientList.setText(ingredients);
+        textViewSummary.setText(Html.fromHtml(summary));
+        textViewRecipeInstructions.setText(Html.fromHtml(instruction));
+
+    }
+
+
+    public String createIngredintText(ArrayList<Ingredients> ingredientsList, boolean isMyRecipe) {
+        StringBuilder ingredient = new StringBuilder();
+        if(isMyRecipe) {
+            for(int i =0; i<ingredientsList.size();i++) {
+                ingredient.append( i+1+" : " +ingredientsList.get(i).name +" "  + "\n");
+            }
+        } else {
+            for(int i =0; i<ingredientsList.size();i++) {
+                ingredient.append( i+1+" : " + ingredientsList.get(i).amount +" " + ingredientsList.get(i).unit +" of "+ingredientsList.get(i).name +" "  + "\n");
+            }
         }
+
         return ingredient.toString();
 
     }
-    public void getRecipeDetails() {
+    public void getRecipeDetailsApi() {
         try {
             api.getRecipeByID(this, recipeID, new GenericAPIResponse() {
                 @Override
                 public void onSuccess(ArrayList ListObject) {
                     recipes = ListObject;
                     Recipe currentRecipe = recipes.get(0);
-                    String ingredients = createIngredintText(currentRecipe.extendedIngredients);
+                    String ingredients = createIngredintText(currentRecipe.extendedIngredients,false);
                     setViewItemInfo(currentRecipe.title,ingredients,currentRecipe.summary, currentRecipe.image,currentRecipe.instructions);
                 }
 
@@ -89,6 +129,18 @@ public class RecipeDetailActivity extends WTFemplate {
             });
         } catch (Exception err) {
             Log.d(TAG, "getRecipeDetails: " + err.getMessage());
+        }
+    }
+    public void getMyRecipe(long id) {
+        try {
+            //Log.d(TAG, "getMyRecipe: Searching for iD:"+ id);
+            Recipe myRecipe = db.getRecipeByID(id);
+            //Log.d(TAG, "getMyRecipe: "+ myRecipe.toString());
+            String Ingredients = createIngredintText(myRecipe.usedIngredients,true);
+            setViewItemInfo(myRecipe.title,Ingredients,myRecipe.summary, myRecipe.instructions);
+
+        } catch (Exception err) {
+            Log.d(TAG, "getMyRecipe: failed to get my recipe data " + err.getMessage());
         }
     }
 }
