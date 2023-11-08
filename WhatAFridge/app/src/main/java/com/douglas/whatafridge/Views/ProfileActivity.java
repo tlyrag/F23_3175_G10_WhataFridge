@@ -1,10 +1,12 @@
 package com.douglas.whatafridge.Views;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -17,14 +19,10 @@ import android.widget.Toast;
 import com.douglas.whatafridge.Controller.MailController;
 import com.douglas.whatafridge.R;
 
-import java.util.Properties;
-
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
 
 
 public class ProfileActivity extends WFTemplate {
+
 
     Button btnSave;
 

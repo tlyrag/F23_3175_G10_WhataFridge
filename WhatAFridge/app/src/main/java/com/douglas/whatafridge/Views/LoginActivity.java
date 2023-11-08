@@ -35,9 +35,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
 import javax.mail.MessagingException;
 
 public class LoginActivity extends WFTemplate {
+
     SignInClient oneTapClient;
     BeginSignInRequest signUpRequest;
 
@@ -163,6 +165,7 @@ public class LoginActivity extends WFTemplate {
 
 
 
+
             /*
 
             //sending email
@@ -221,6 +224,7 @@ public class LoginActivity extends WFTemplate {
 
              */
             startActivity(new Intent(LoginActivity.this,SearchRecipeActivity.class));
+
         });
     }
 }
