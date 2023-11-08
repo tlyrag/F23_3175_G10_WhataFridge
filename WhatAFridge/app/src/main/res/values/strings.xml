@@ -32,6 +32,10 @@
     <string name="txtGlutenFree">GlutenFree</string>
     <string name="txtProfileTypeVegetarian">Type Of Vegetarian</string>
     <string name="txtSave">Save</string>
+
+    <string name="txtUserid">Userid</string>
+    <string name="txtPassword">Password</string>
+
     <string name="textViewMyRecipeTitle">Add Recipe\n</string>
     <string name="textViewMyRecipeName">Recipe Name</string>
     <string name="editTextMyRecipeName">Add Recipe Name</string>
@@ -46,6 +50,7 @@
     <string name="btnAddRecipe">Add Recipe</string>
     <string name="txtViewMyRecipeTitle">My Recipes</string>
     <string name="btnAddRecipeAct">Add Recipe</string>>
+
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>
         <item>Lacto-ovo vegetarian</item>
