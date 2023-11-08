@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
 
     <EditText
-        android:id="@+id/editTextHeight2"
+        android:id="@+id/editTextWeight"
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:ems="10"
@@ -139,7 +139,7 @@
         android:text="@string/txtGlutenFree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHeight2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
 
     <Spinner
         android:id="@+id/spinnerTypeVegetarian"
