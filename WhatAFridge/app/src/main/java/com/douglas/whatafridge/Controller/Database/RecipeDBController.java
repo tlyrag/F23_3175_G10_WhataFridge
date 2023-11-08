@@ -1,4 +1,4 @@
-package com.douglas.whatafridge.Controller;
+package com.douglas.whatafridge.Controller.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,7 +13,7 @@ import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBController extends SQLiteOpenHelper {
+public class RecipeDBController extends SQLiteOpenHelper {
 
     private final String TAG = "WTF App";
     private static final String DB_NAME = "WTFDB";
@@ -29,7 +29,7 @@ public class DBController extends SQLiteOpenHelper {
     private static final String INGREDIENTS_COL = "ingredients";
 
 
-    public DBController(Context context) {
+    public RecipeDBController(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

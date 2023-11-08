@@ -1,4 +1,4 @@
-package com.douglas.whatafridge.Controller;
+package com.douglas.whatafridge.Controller.Adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecipeListViewAdapterController extends BaseAdapter {
+public class RecipeListViewAdapter extends BaseAdapter {
     final String TAG ="WTF App";
     List<Recipe> recipeList;
     TextView txtRecipeTime;
@@ -23,7 +23,7 @@ public class RecipeListViewAdapterController extends BaseAdapter {
     TextView txtRecipeHealthScore;
     ImageView imgRecipe;
 
-    public RecipeListViewAdapterController(List<Recipe> recipeList) {
+    public RecipeListViewAdapter(List<Recipe> recipeList) {
         this.recipeList = recipeList;
     }
 

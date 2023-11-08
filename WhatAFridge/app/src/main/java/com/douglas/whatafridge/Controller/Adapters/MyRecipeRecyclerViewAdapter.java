@@ -1,4 +1,4 @@
-package com.douglas.whatafridge.Controller;
+package com.douglas.whatafridge.Controller.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyRecipeRecyclerViewController  extends RecyclerView.Adapter<MyRecipeRecyclerViewController.ItemViewHolder>{
+public class MyRecipeRecyclerViewAdapter extends RecyclerView.Adapter<MyRecipeRecyclerViewAdapter.ItemViewHolder>{
     List<Recipe> recipeList;
 
-    public MyRecipeRecyclerViewController(List<Recipe> recipeList) {
+    public MyRecipeRecyclerViewAdapter(List<Recipe> recipeList) {
         this.recipeList = recipeList;
     }
 

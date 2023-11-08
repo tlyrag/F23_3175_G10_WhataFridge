@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.douglas.whatafridge.Controller.DBController;
+import com.douglas.whatafridge.Controller.Database.RecipeDBController;
 import com.douglas.whatafridge.Controller.SpoonacularController;
 import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeDetailActivity extends WTFemplate {
+public class RecipeDetailActivity extends WFTemplate {
     SpoonacularController api = new SpoonacularController();
     TextView textViewRecipeTitle;
     TextView textViewIngredientsTitle;
@@ -31,13 +31,13 @@ public class RecipeDetailActivity extends WTFemplate {
     String recipeID;
     long myRecipeID;
     boolean isMyRecipe;
-    DBController db;
+    RecipeDBController db;
     List<Recipe> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-         db = new DBController(this);
+         db = new RecipeDBController(this);
         getExtraData();
         getViewItems();
         Log.d(TAG, "onCreate: isMyRecipe is:" + isMyRecipe);

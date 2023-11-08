@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.douglas.whatafridge.R;
 
-public class WTFemplate extends AppCompatActivity {
+public class WFTemplate extends AppCompatActivity {
     public final String TAG = "WTF APP";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

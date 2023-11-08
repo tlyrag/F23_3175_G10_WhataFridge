@@ -1,6 +1,7 @@
 package com.douglas.whatafridge.Views;
 
 import com.douglas.whatafridge.Controller.*;
+import com.douglas.whatafridge.Controller.Adapters.RecipeListViewAdapter;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
 import com.douglas.whatafridge.R;
@@ -20,7 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchRecipeActivity extends WTFemplate {
+public class SearchRecipeActivity extends WFTemplate {
     SpoonacularController api = new SpoonacularController();
     TextView txtTitle;
     ArrayList<TextView> txtRecipes = new ArrayList<>();
@@ -177,7 +178,7 @@ public class SearchRecipeActivity extends WTFemplate {
                             recipes.add(dummyRecipe);
                         } else {
                             recipes = ListObject;
-                            RecipeListViewAdapterController recipeAdapter = new RecipeListViewAdapterController(recipes);
+                            RecipeListViewAdapter recipeAdapter = new RecipeListViewAdapter(recipes);
                             listViewRecipes.setAdapter(recipeAdapter);
                         }
                     }
