@@ -31,7 +31,7 @@
             android:name=".Views.RecipeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.WTFemplate"
+            android:name=".Views.WFTemplate"
             android:exported="false" />
         <activity
             android:name=".Views.SearchRecipeActivity"

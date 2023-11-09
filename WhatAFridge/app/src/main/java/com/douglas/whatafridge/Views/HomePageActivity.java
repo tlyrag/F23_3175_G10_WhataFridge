@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.douglas.whatafridge.R;
 
-public class HomePageActivity extends WTFemplate {
+public class HomePageActivity extends WFTemplate {
     Button btnMyRecipe;
     Button btnSearchRecipe;
     Button btnAddRecipe;

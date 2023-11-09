@@ -223,7 +223,7 @@ public class LoginActivity extends WFTemplate {
 
 
              */
-            startActivity(new Intent(LoginActivity.this,SearchRecipeActivity.class));
+            startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
 
         });
     }
