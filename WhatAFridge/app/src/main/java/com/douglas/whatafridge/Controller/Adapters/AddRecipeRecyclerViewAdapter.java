@@ -1,4 +1,4 @@
-package com.douglas.whatafridge.Controller;
+package com.douglas.whatafridge.Controller.Adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import com.douglas.whatafridge.R;
 
 import java.util.List;
 
-public class AddRecipeRecyclerViewController extends RecyclerView.Adapter<AddRecipeRecyclerViewController.ImageViewerHolder>{
+public class AddRecipeRecyclerViewAdapter extends RecyclerView.Adapter<AddRecipeRecyclerViewAdapter.ImageViewerHolder>{
     public final String TAG = "WTF APP";
     List<Ingredients> ingredientsList;
 
@@ -27,7 +27,7 @@ public class AddRecipeRecyclerViewController extends RecyclerView.Adapter<AddRec
         notifyDataSetChanged();
     }
 
-    public AddRecipeRecyclerViewController(int ingredientsCount) {
+    public AddRecipeRecyclerViewAdapter(int ingredientsCount) {
         this.ingredientsCount = ingredientsCount;
         notifyDataSetChanged();
     }

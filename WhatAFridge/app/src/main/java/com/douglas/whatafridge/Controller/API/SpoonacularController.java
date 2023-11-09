@@ -1,6 +1,5 @@
-package com.douglas.whatafridge.Controller;
+package com.douglas.whatafridge.Controller.API;
 import android.content.Context;
-import android.nfc.Tag;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -8,14 +7,13 @@ import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SpoonacularController  {
-    public  String tag = "WTFApp";
+    public  String TAG = "WTFApp";
     GetRecipeByIngredients getRecipe;
     GetRecipeByID recipeByID;
     RetrofitClient retrofitClient = new RetrofitClient();
@@ -41,9 +39,9 @@ public class SpoonacularController  {
                         if(!response.isSuccessful()){
                             Toast.makeText(context, "Error Fetching API", Toast.LENGTH_SHORT).show();
                             ApiResponse.onFail("Error Fetching the API:"+ response.message());
-                            Log.d(tag,"Error Fetching API:"+ response.message());
+                            Log.d(TAG,"Error Fetching API:"+ response.message());
                         } else {
-                            Log.d(tag,response.body().get(0).title);
+                            //Log.d(TAG,response.body().get(0).title);
                             ApiResponse.onSuccess(response.body());
                         }
                     }
@@ -51,11 +49,11 @@ public class SpoonacularController  {
                     @Override
                     public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
                         Toast.makeText(context, "API FAIled" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d(tag,"Error Fetching API"+t.getMessage());
+                        Log.d(TAG,"Error Fetching API"+t.getMessage());
                     }
                 });
             } catch (Exception err) {
-                Log.d(tag,"Error in Spoonacular Controller"+ err.getMessage());
+                Log.d(TAG,"Error in Spoonacular Controller"+ err.getMessage());
             }
 
         }
@@ -81,7 +79,7 @@ public class SpoonacularController  {
                     if(!response.isSuccessful()) {
                         Toast.makeText(context, "Error Fetching API", Toast.LENGTH_SHORT).show();
                         ApiResponse.onFail("Error Fetching the API:"+ response.message());
-                        Log.d(tag,"Error Fetching API:"+ response.message());
+                        Log.d(TAG,"Error Fetching API:"+ response.message());
                     } else {
                         ApiResponse.onSuccess(response.body());
                     }
@@ -90,7 +88,7 @@ public class SpoonacularController  {
                 @Override
                 public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
                     Toast.makeText(context, "API FAIled" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d(tag,"Error Fetching API"+t.getMessage());
+                    Log.d(TAG,"Error Fetching API"+t.getMessage());
                 }
             });
         }

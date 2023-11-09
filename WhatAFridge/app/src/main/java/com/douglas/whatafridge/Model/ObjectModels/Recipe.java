@@ -56,10 +56,18 @@ public class Recipe {
         this.summary = summary;
         this.instructions = instructions;
     }
+    public Recipe(int id,String title, ArrayList<Ingredients> usedIngredients, String summary, String instructions) {
+        this.id = id;
+        this.title = title;
+        this.usedIngredients = usedIngredients;
+        this.summary = summary;
+        this.instructions = instructions;
+    }
 
     @Override
     public String toString() {
         return "Recipe{" +
+                "id='" + id + '\'' +
                 "title='" + title + '\'' +
                 ", usedIngredients=" + usedIngredients +
                 ", summary='" + summary + '\'' +

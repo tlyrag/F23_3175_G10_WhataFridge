@@ -11,33 +11,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.douglas.whatafridge.Controller.AddRecipeRecyclerViewController;
-import com.douglas.whatafridge.Controller.DBController;
+import com.douglas.whatafridge.Controller.Adapters.AddRecipeRecyclerViewAdapter;
+import com.douglas.whatafridge.Controller.Database.RecipeDBController;
 import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.R;
 
 import java.util.ArrayList;
 
-public class AddRecipesActivity extends WTFemplate {
+public class AddRecipesActivity extends WFTemplate {
     public final String TAG = "WTF APP";
     EditText editTextRecipeName;
     EditText editTextRecipeSummary;
     EditText editTextRecipeInstruction;
     EditText editTextRecipeNumOfIngredients;
-    AddRecipeRecyclerViewController adapter;
+    AddRecipeRecyclerViewAdapter adapter;
     RecyclerView ingredientRecyclerView;
     Button btnAddIngreds;
     Button btnaddRecipe;
     Recipe myRecipe;
-    DBController db;
+    RecipeDBController db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
         getItemView();
         createRecyclerView();
-        db = new DBController(AddRecipesActivity.this);
+        db = new RecipeDBController(AddRecipesActivity.this);
 
         btnaddRecipe.setOnClickListener(view -> {
             if(createRecipeObj()) {
@@ -78,7 +78,7 @@ public class AddRecipesActivity extends WTFemplate {
     }
     public void createRecyclerView() {
         try{
-            adapter = new AddRecipeRecyclerViewController(1);
+            adapter = new AddRecipeRecyclerViewAdapter(1);
             LinearLayoutManager lm  = new LinearLayoutManager(this);
             ingredientRecyclerView.setLayoutManager(lm);
             ingredientRecyclerView.setAdapter(adapter);
@@ -101,7 +101,7 @@ public class AddRecipesActivity extends WTFemplate {
         for(int i=0;i<ingredientRecyclerView.getChildCount();i++) {
             View itemView = ingredientRecyclerView.getChildAt(i);
             RecyclerView.ViewHolder viewHolder = ingredientRecyclerView.getChildViewHolder(itemView);
-            AddRecipeRecyclerViewController.ImageViewerHolder IngredientViewHolder = (AddRecipeRecyclerViewController.ImageViewerHolder) viewHolder;
+            AddRecipeRecyclerViewAdapter.ImageViewerHolder IngredientViewHolder = (AddRecipeRecyclerViewAdapter.ImageViewerHolder) viewHolder;
             String ingredientName =IngredientViewHolder.getIngredient();
             Ingredients newIngredient = new Ingredients();
             newIngredient.name = ingredientName;
