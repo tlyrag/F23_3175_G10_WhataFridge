@@ -133,9 +133,7 @@ public class RecipeDetailActivity extends WFTemplate {
     }
     public void getMyRecipe(long id) {
         try {
-            //Log.d(TAG, "getMyRecipe: Searching for iD:"+ id);
             Recipe myRecipe = db.getRecipeByID(id);
-            //Log.d(TAG, "getMyRecipe: "+ myRecipe.toString());
             String Ingredients = createIngredintText(myRecipe.usedIngredients,true);
             setViewItemInfo(myRecipe.title,Ingredients,myRecipe.summary, myRecipe.instructions);
 

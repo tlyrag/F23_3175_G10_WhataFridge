@@ -143,12 +143,15 @@ public class RecipeDBController extends SQLiteOpenHelper {
         }
     }
     public Recipe createRecipe(Cursor cursor) {
+        int  recipeId = cursor.getInt(0);
+
         String recipeName = cursor.getString(1);
         String recipeSummary = cursor.getString(2);
         String recipeInstruction = cursor.getString(3);
         String recipeIngredients = cursor.getString(4);
         ArrayList<Ingredients> myIngredList = createIngredientList(recipeIngredients);
-        Recipe myRecipe = new Recipe(recipeName,myIngredList,recipeSummary,recipeInstruction);
+        Recipe myRecipe = new Recipe(recipeId,recipeName,myIngredList,recipeSummary,recipeInstruction);
+
         return myRecipe;
     }
     public ArrayList<Ingredients> createIngredientList(String ingredients) {
