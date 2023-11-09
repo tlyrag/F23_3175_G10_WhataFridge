@@ -1,156 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="false"
+    android:fillViewport="true"
     android:orientation="vertical"
     android:padding="10dp">
 
-<androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="false"
-    android:orientation="vertical"
-    android:padding="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textViewMyRecipeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textViewMyRecipeTitle"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewMyRecipeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/card_stroke"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:shadowColor="#2F0D71"
+            android:shadowDx="-5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="@string/textViewMyRecipeTitle"
+            android:textSize="34sp"
 
-    <Button
-        android:id="@+id/btnAddRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/btnAddRecipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientRecyclerView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextMyRecipeName"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/editTextMyRecipeName"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRecipeMain" />
+        <Button
+            android:id="@+id/btnAddRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnAddRecipe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientRecyclerView" />
 
-    <EditText
-        android:id="@+id/editTextMyRecipeSummary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/editTextMyRecipeSummary"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeName" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutIngreds" />
 
-    <EditText
-        android:id="@+id/editTextMyRecipeInstruction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/editTextMyRecipeInstructions"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeSummary" />
+        <ImageView
+            android:id="@+id/imageViewRecipeMain"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipeTitle"
+            app:srcCompat="@drawable/recipe_img" />
 
-    <EditText
-        android:id="@+id/editTextNumberOfIngred"
-        android:layout_width="50dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/textViewMyRecipeNumberOfIngredients"
-        android:inputType="numberSigned"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddIngreds"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeInstruction" />
+        <LinearLayout
+            android:id="@+id/LinearLayoutRecipeName"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/card_stroke"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRecipeMain">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ingredientRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberOfIngred" />
+            <ImageView
+                android:id="@+id/imageViewRecipeName"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/recipe_name_img" />
 
-    <Button
-        android:id="@+id/btnAddIngreds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="128dp"
-        android:text="@string/btnAddIngreds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumberOfIngred"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeInstruction" />
+            <EditText
+                android:id="@+id/editTextMyRecipeName"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/editTextMyRecipeName"
+                android:inputType="text" />
 
-    <ImageView
-        android:id="@+id/imageViewRecipeMain"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipeTitle"
-        app:srcCompat="@drawable/recipe_img" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageViewRecipeInstruction"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeSummary"
-        app:srcCompat="@drawable/recipe_instruction_img" />
+        <LinearLayout
+            android:id="@+id/LinearLayoutSummary"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/card_stroke"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutRecipeName">
 
-    <ImageView
-        android:id="@+id/imageViewRecipeName"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRecipeMain"
-        app:srcCompat="@drawable/recipe_name_img" />
+            <ImageView
+                android:id="@+id/imageViewMyRecipeSummary"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/recipe_summary_img" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextMyRecipeSummary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMyRecipeName"
-        app:srcCompat="@drawable/recipe_summary_img" />
+            <EditText
+                android:id="@+id/editTextMyRecipeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/editTextMyRecipeSummary"
+                android:inputType="textMultiLine" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutInstructions"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/card_stroke"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutSummary">
+
+            <ImageView
+                android:id="@+id/imageViewRecipeInstruction"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/recipe_instruction_img" />
+
+            <EditText
+                android:id="@+id/editTextMyRecipeInstruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/editTextMyRecipeInstructions"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutIngreds"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/card_stroke"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutInstructions"
+            tools:layout_editor_absoluteX="10dp">
+
+            <EditText
+                android:id="@+id/editTextNumberOfIngred"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="128dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="@string/textViewMyRecipeNumberOfIngredients"
+                android:inputType="numberSigned" />
+
+            <Button
+                android:id="@+id/btnAddIngreds"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="128dp"
+                android:text="@string/btnAddIngreds" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
