@@ -1,6 +1,6 @@
 package com.douglas.whatafridge.Views;
 
-import com.douglas.whatafridge.Controller.*;
+import com.douglas.whatafridge.Controller.API.SpoonacularController;
 import com.douglas.whatafridge.Controller.Adapters.RecipeListViewAdapter;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
@@ -173,14 +173,17 @@ public class SearchRecipeActivity extends WFTemplate {
                     @Override
                     public void onSuccess(ArrayList ListObject) {
                         if(ListObject.size()==0 || ListObject.isEmpty() || ListObject ==null) {
+                            recipes.clear();
                             Recipe dummyRecipe = new Recipe();
                             dummyRecipe.title = "No Recipe was Found";
                             recipes.add(dummyRecipe);
+
+                            Toast.makeText(context, "No Recipe Was Found", Toast.LENGTH_SHORT).show();
                         } else {
                             recipes = ListObject;
-                            RecipeListViewAdapter recipeAdapter = new RecipeListViewAdapter(recipes);
-                            listViewRecipes.setAdapter(recipeAdapter);
                         }
+                        RecipeListViewAdapter recipeAdapter = new RecipeListViewAdapter(recipes);
+                        listViewRecipes.setAdapter(recipeAdapter);
                     }
 
                     @Override

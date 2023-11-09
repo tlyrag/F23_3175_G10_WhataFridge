@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.douglas.whatafridge.Controller.Database.RecipeDBController;
-import com.douglas.whatafridge.Controller.SpoonacularController;
+import com.douglas.whatafridge.Controller.API.SpoonacularController;
 import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
