@@ -10,6 +10,8 @@ public class HomePageActivity extends WFTemplate {
     Button btnMyRecipe;
     Button btnSearchRecipe;
     Button btnAddRecipe;
+
+    Button btnProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +31,18 @@ public class HomePageActivity extends WFTemplate {
             Intent newIntent = new Intent(this, AddRecipesActivity.class);
             startActivity(newIntent);
         });
+
+        btnProfile.setOnClickListener(view -> {
+            Intent newIntent = new Intent(this, ProfileActivity.class);
+            startActivity(newIntent);
+        });
     }
 
     public void getItemViews() {
         btnMyRecipe = findViewById(R.id.btnMyRecipe);
         btnSearchRecipe= findViewById(R.id.btnSearchRecipe);
         btnAddRecipe = findViewById(R.id.btnAddRecipeAct);
+        btnProfile = findViewById(R.id.btnProfile);
     }
 
 }

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.douglas.whatafridge.Controller.Database.MyDBHelper;
 import com.douglas.whatafridge.Controller.Database.UserDBController;
 import com.douglas.whatafridge.Model.ObjectModels.User;
 import com.douglas.whatafridge.R;
@@ -26,13 +27,15 @@ public class SignUpActivity extends WFTemplate {
     EditText editTextSignUpPassword;
     EditText editTextConfirmPassword;
     Button btnSignUp;
+    MyDBHelper myDBHelper;
     UserDBController db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        db = new UserDBController(SignUpActivity.this);
+        myDBHelper = new MyDBHelper(SignUpActivity.this);
+        db = new UserDBController(myDBHelper);
 
         editTextSignUpEmail = findViewById(R.id.editTextSignUpEmail);
         editTextSignUpPassword = findViewById(R.id.editTextSignUpPassword);
@@ -118,5 +121,10 @@ public class SignUpActivity extends WFTemplate {
         }
 
         return shaString;
+    }
+    @Override
+    protected void onDestroy() {
+        myDBHelper.close();
+        super.onDestroy();
     }
 }

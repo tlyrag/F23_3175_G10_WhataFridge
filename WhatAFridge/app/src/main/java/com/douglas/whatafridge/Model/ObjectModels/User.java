@@ -11,6 +11,13 @@ public class User {
     private String gluten;
     private int vegeType;
 
+    private String egg;
+    private String dairy;
+    private String poultry;
+    private String fish;
+    private String pork;
+    private String beef;
+
     public String getUserId() {
         return userId;
     }
@@ -73,5 +80,53 @@ public class User {
 
     public void setVegeType(int vegeType) {
         this.vegeType = vegeType;
+    }
+
+    public String getEgg() {
+        return egg;
+    }
+
+    public void setEgg(String egg) {
+        this.egg = egg;
+    }
+
+    public String getDairy() {
+        return dairy;
+    }
+
+    public void setDairy(String dairy) {
+        this.dairy = dairy;
+    }
+
+    public String getPoultry() {
+        return poultry;
+    }
+
+    public void setPoultry(String poultry) {
+        this.poultry = poultry;
+    }
+
+    public String getFish() {
+        return fish;
+    }
+
+    public void setFish(String fish) {
+        this.fish = fish;
+    }
+
+    public String getPork() {
+        return pork;
+    }
+
+    public void setPork(String pork) {
+        this.pork = pork;
+    }
+
+    public String getBeef() {
+        return beef;
+    }
+
+    public void setBeef(String beef) {
+        this.beef = beef;
     }
 }

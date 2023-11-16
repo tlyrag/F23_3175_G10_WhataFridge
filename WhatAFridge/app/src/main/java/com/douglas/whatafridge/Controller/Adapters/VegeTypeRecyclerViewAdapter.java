@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,13 +18,30 @@ public class VegeTypeRecyclerViewAdapter extends RecyclerView.Adapter<VegeTypeRe
 
     List<VegeTypeImage> AdapterImages;
     List<VegeTypeImage> oppAdapterImages;
+    OnItemClickListener onItemClickListener;
 
-
-    public VegeTypeRecyclerViewAdapter(List<VegeTypeImage> adapterImages, List<VegeTypeImage> oppAdapterImages) {
+    public VegeTypeRecyclerViewAdapter(List<VegeTypeImage> adapterImages, List<VegeTypeImage> oppAdapterImages, OnItemClickListener onItemClickListener) {
         AdapterImages = adapterImages;
         this.oppAdapterImages = oppAdapterImages;
+        this.onItemClickListener = onItemClickListener;
     }
 
+    public List<VegeTypeImage> getAdapterImages() {
+        return AdapterImages;
+    }
+
+    public void setAdapterImages(List<VegeTypeImage> adapterImages) {
+        AdapterImages = adapterImages;
+        notifyDataSetChanged();
+    }
+
+    public List<VegeTypeImage> getOppAdapterImages() {
+        return oppAdapterImages;
+    }
+
+    public void setOppAdapterImages(List<VegeTypeImage> oppAdapterImages) {
+        this.oppAdapterImages = oppAdapterImages;
+    }
 
     @NonNull
     @Override
@@ -38,17 +56,19 @@ public class VegeTypeRecyclerViewAdapter extends RecyclerView.Adapter<VegeTypeRe
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         holder.imgViewItem.setImageResource(AdapterImages.get(position).getImgPic());
 
-        holder.imgViewItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeView(holder.getAdapterPosition());
-            }
-        });
+//        holder.imgViewItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                changeView(holder.getAdapterPosition());
+//                onItemClickListener.onItemClick();
+//            }
+//        });
     }
 
     public void changeView(int position){
         VegeTypeImage vegeTypeImage = new VegeTypeImage(AdapterImages.get(position).getImgId(), AdapterImages.get(position).getImgName(), AdapterImages.get(position).getImgPic());
-        VegeTypeImage oppvegeTypeImage = new VegeTypeImage(AdapterImages.get(position).getImgId(), AdapterImages.get(position).getImgName(), oppAdapterImages.get(position).getImgPic());
+        VegeTypeImage oppvegeTypeImage = new VegeTypeImage(oppAdapterImages.get(position).getImgId(), oppAdapterImages.get(position).getImgName(), oppAdapterImages.get(position).getImgPic());
 
         AdapterImages.set(position, oppvegeTypeImage);
         oppAdapterImages.set(position, vegeTypeImage);
@@ -67,7 +87,20 @@ public class VegeTypeRecyclerViewAdapter extends RecyclerView.Adapter<VegeTypeRe
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             imgViewItem = itemView.findViewById(R.id.imgViewVegeType);
+
+            imgViewItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick();
+                    changeView(getAdapterPosition());
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        public void onItemClick();
+
     }
 
 }

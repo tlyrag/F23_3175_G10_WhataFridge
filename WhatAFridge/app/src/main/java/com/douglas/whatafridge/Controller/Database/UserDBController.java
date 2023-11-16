@@ -11,11 +11,9 @@ import android.util.Log;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.ObjectModels.User;
 
-public class UserDBController extends SQLiteOpenHelper {
+public class UserDBController  {
 
     private final String TAG = "WTF App";
-    private static final String DB_NAME = "WTFDB";
-    private static final int DB_VERSION = 2;
     private static final String TABLE_NAME = "UserInfo";
 
     private static final String USERID_COL = "userid";
@@ -27,44 +25,23 @@ public class UserDBController extends SQLiteOpenHelper {
     private static final String HEIGHT_COL = "height";
     private static final String GLUTEN_COL = "gluten";
     private static final String VEGETYPE_COL = "vegetype";
+    private static final String DAIRY_COL = "dairy";
+    private static final String EGG_COL = "egg";
+    private static final String POULTRY_COL = "poultry";
+    private static final String FISH_COL = "fish";
+    private static final String PORK_COL = "pork";
+    private static final String BEEF_COL = "beef";
 
-    public UserDBController(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
-    }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        createTable(db);
-    }
+    MyDBHelper myDBHelper;
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        onCreate(db);
-    }
-
-    public void createTable(SQLiteDatabase db) {
-        try{
-            String query = "CREATE TABLE " + TABLE_NAME + " ("
-                    + USERID_COL + " TEXT PRIMARY KEY AUTOINCREMENT, "
-                    + PASSWORD_COL + " TEXT,"
-                    + USERNAME_COL + " TEXT,"
-                    + AGE_COL + " INTEGER,"
-                    + WEIGHT_COL + " REAL,"
-                    + HEIGHT_COL + " REAL,"
-                    + GLUTEN_COL + " TEXT,"
-                    + VEGETYPE_COL + " INTEGER)";
-
-            db.execSQL(query);
-
-        } catch (Exception err) {
-            Log.d(TAG, "createTable: ");
-        }
+    public UserDBController(MyDBHelper myDBHelper) {
+        this.myDBHelper = myDBHelper;
     }
 
     public void insertUserPass(String userId, String userPassword) {
         try {
-            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteDatabase db = myDBHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             values.put(USERID_COL, userId);
@@ -75,7 +52,7 @@ public class UserDBController extends SQLiteOpenHelper {
             db.close();
 
         } catch (Exception err) {
-            Log.d(TAG, "addNewRecipe: Failed to read Database"+ err.getMessage() );
+            Log.d(TAG, "insertUserPass: "+ err.getMessage() );
         }
 
     }
@@ -85,7 +62,7 @@ public class UserDBController extends SQLiteOpenHelper {
         User user = null;
 
         try{
-            SQLiteDatabase db = this.getReadableDatabase();
+            SQLiteDatabase db = myDBHelper.getReadableDatabase();
             String query = "Select * From " + TABLE_NAME
                     + " Where " + USERID_COL +" = '" + userId + "'";
 
@@ -102,6 +79,14 @@ public class UserDBController extends SQLiteOpenHelper {
                 user.setHeight(c.getString(c.getColumnIndex(HEIGHT_COL)));
                 user.setGluten(c.getString(c.getColumnIndex(GLUTEN_COL)));
                 user.setVegeType(c.getInt(c.getColumnIndex(VEGETYPE_COL)));
+                user.setDairy(c.getString(c.getColumnIndex(DAIRY_COL)));
+                user.setEgg(c.getString(c.getColumnIndex(EGG_COL)));
+                user.setPoultry(c.getString(c.getColumnIndex(POULTRY_COL)));
+                user.setFish(c.getString(c.getColumnIndex(FISH_COL)));
+                user.setPork(c.getString(c.getColumnIndex(PORK_COL)));
+                user.setBeef(c.getString(c.getColumnIndex(BEEF_COL)));
+
+
             }
 
             c.close();
@@ -115,7 +100,7 @@ public class UserDBController extends SQLiteOpenHelper {
 
     public void updateUserInfo(User user){
         try {
-            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteDatabase db = myDBHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             values.put(PASSWORD_COL, user.getPassword());
@@ -126,12 +111,19 @@ public class UserDBController extends SQLiteOpenHelper {
             values.put(GLUTEN_COL, user.getGluten());
             values.put(VEGETYPE_COL, user.getVegeType());
 
+            values.put(EGG_COL, user.getEgg());
+            values.put(DAIRY_COL, user.getDairy());
+            values.put(POULTRY_COL, user.getPoultry());
+            values.put(FISH_COL, user.getFish());
+            values.put(PORK_COL, user.getPork());
+            values.put(BEEF_COL, user.getBeef());
+
             db.update(TABLE_NAME, values, USERID_COL+"=?", new String[]{user.getUserId()});
 
             db.close();
 
         } catch (Exception err) {
-            Log.d(TAG, "addNewRecipe: Failed to read Database"+ err.getMessage() );
+            Log.d(TAG, "updateUserInfo: "+ err.getMessage() );
         }
 
 
