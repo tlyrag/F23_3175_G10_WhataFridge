@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -54,7 +55,7 @@ public class LoginActivity extends WFTemplate {
     Button btnLoginWithoutGoogle;
     EditText editTextUserId;
     EditText editTextPassword;
-
+    TextView txtForgetPw;
     TextView txtViewSignUp;
 
     String Userid;
@@ -67,6 +68,7 @@ public class LoginActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        updateTexts();
         //after login successfully, it is stored in the device and use again.
         SharedPreferences preferences = getSharedPreferences("USER", MODE_PRIVATE);
         Userid = preferences.getString(getString(R.string.txtUserid),"");
@@ -269,5 +271,18 @@ public class LoginActivity extends WFTemplate {
     protected void onDestroy() {
         myDBHelper.close();
         super.onDestroy();
+    }
+
+    private void updateTexts() {
+       try {
+           txtForgetPw = findViewById(R.id.txtViewForgetPassword);
+           txtViewSignUp = findViewById(R.id.txtViewSignUp);
+           txtForgetPw.setPaintFlags(txtForgetPw.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+           txtViewSignUp.setPaintFlags(txtViewSignUp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+       } catch (Exception err) {
+           Log.d(TAG, "updateTexts: " + err.getMessage());
+       }
+
     }
 }
