@@ -16,7 +16,7 @@ import java.util.List;
 public class RecipeDBController extends SQLiteOpenHelper {
 
     private final String TAG = "WTF App";
-    private static final String DB_NAME = "WTFDB";
+    private static final String DB_NAME = "RecipeDB";
     private static final int DB_VERSION = 1;
     private static final String TABLE_NAME = "myRecipes";
     private static final String ID_COL = "id";
@@ -37,6 +37,7 @@ public class RecipeDBController extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         createTable(db);
     }
 
@@ -123,7 +124,7 @@ public class RecipeDBController extends SQLiteOpenHelper {
             } else {
                 Recipe dummyRecipe = new Recipe();
                 dummyRecipe.title = "Unable to find recipes";
-                recipeList.add(dummyRecipe);
+                //recipeList.add(dummyRecipe);
                 return recipeList;
             }
             // Loping through database and grabbing the rest of the data

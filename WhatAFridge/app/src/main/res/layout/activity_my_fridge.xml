@@ -12,16 +12,16 @@
     tools:context=".Views.MyRecipesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecipesRecyclerView"
+        android:id="@+id/FridgeRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipe" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMyFridge" />
 
     <TextView
-        android:id="@+id/textViewMyRecipe"
+        android:id="@+id/textViewMyFridge"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:background="@drawable/my_reecipes"
@@ -31,7 +31,7 @@
         android:shadowDx="-3"
         android:shadowDy="3"
         android:shadowRadius="1"
-        android:text="My Recipes"
+        android:text="My Fridge"
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"

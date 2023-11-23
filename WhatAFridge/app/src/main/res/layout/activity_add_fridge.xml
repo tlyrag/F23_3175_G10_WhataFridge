@@ -17,7 +17,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textViewMyRecipeTitle"
+            android:id="@+id/textViewMyIngredientTitle"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:background="@drawable/card_stroke"
@@ -28,7 +28,7 @@
             android:shadowDx="-5"
             android:shadowDy="5"
             android:shadowRadius="5"
-            android:text="@string/textViewMyRecipeTitle"
+            android:text="@string/textViewMyFridgeTitle"
             android:textSize="34sp"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,25 +36,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnAddRecipe"
+            android:id="@+id/btnAddIngredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/btnAddRecipe"
+            android:text="@string/btnAddItem"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientRecyclerView" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredientRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutIngreds" />
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutInstructions" />
 
         <ImageView
             android:id="@+id/imageViewFridgeMain"
@@ -63,8 +52,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewMyRecipeTitle"
-            app:srcCompat="@drawable/recipe_img" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewMyIngredientTitle"
+            app:srcCompat="@drawable/ingredient" />
 
         <LinearLayout
             android:id="@+id/LinearLayoutRecipeName"
@@ -78,19 +67,19 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewFridgeMain">
 
             <ImageView
-                android:id="@+id/imageViewRecipeName"
+                android:id="@+id/imageViewItemName"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="2dp"
                 app:srcCompat="@drawable/recipe_name_img" />
 
             <EditText
-                android:id="@+id/editTextRecipeName"
+                android:id="@+id/editTextIngredientName"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="@string/editTextMyRecipeName"
+                android:hint="@string/editTextFridgeItemName"
                 android:inputType="text" />
 
         </LinearLayout>
@@ -107,20 +96,20 @@
             app:layout_constraintTop_toBottomOf="@+id/LinearLayoutRecipeName">
 
             <ImageView
-                android:id="@+id/imageViewRecipeSummary"
+                android:id="@+id/imageViewIngredientBestBefore"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="2dp"
                 app:srcCompat="@drawable/recipe_summary_img" />
 
             <EditText
-                android:id="@+id/editTextRecipeSummary"
+                android:id="@+id/editTextIngredientBestBefore"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/editTextMyRecipeSummary"
+                android:hint="@string/editTextFridgeBestBefore"
                 android:inputType="textMultiLine" />
 
         </LinearLayout>
@@ -137,53 +126,21 @@
             app:layout_constraintTop_toBottomOf="@+id/LinearLayoutSummary">
 
             <ImageView
-                android:id="@+id/imageViewRecipeInstruction"
+                android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="2dp"
                 app:srcCompat="@drawable/recipe_instruction_img" />
 
             <EditText
-                android:id="@+id/editTextRecipeInstructions"
+                android:id="@+id/editTextIngredientQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/editTextMyRecipeInstructions"
+                android:hint="@string/editTextIngredientQuantity"
                 android:inputType="textMultiLine" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LinearLayoutIngreds"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/card_stroke"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/LinearLayoutInstructions"
-            tools:layout_editor_absoluteX="10dp">
-
-            <EditText
-                android:id="@+id/editTextNumberOfIngred"
-                android:layout_width="50dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="128dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:hint="@string/textViewMyRecipeNumberOfIngredients"
-                android:inputType="numberSigned" />
-
-            <Button
-                android:id="@+id/btnAddIngreds"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="128dp"
-                android:text="@string/btnAddIngreds" />
 
         </LinearLayout>
 
