@@ -93,7 +93,8 @@ public class LoginActivity extends WFTemplate {
 
         txtViewSignUp = findViewById(R.id.txtViewSignUp);
         txtViewSignUp.setOnClickListener((View v) -> {
-            startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+            //startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+            startActivity(new Intent(LoginActivity.this,VerificationActivity.class));
 
         });
 

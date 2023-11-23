@@ -18,6 +18,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         createUserTable(db);
+        createCodeTable(db);
     }
 
     public void createUserTable(SQLiteDatabase db) {
@@ -25,6 +26,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             String query = "CREATE TABLE UserInfo ("
                     + "userid TEXT PRIMARY KEY, "
                     + "password TEXT,"
+                    + "code TEXT,"
                     + "username TEXT,"
                     + "age INTEGER,"
                     + "weight REAL,"
@@ -37,6 +39,22 @@ public class MyDBHelper extends SQLiteOpenHelper {
                     + "fish TEXT,"
                     + "pork TEXT,"
                     + "beef TEXT)";
+
+            db.execSQL(query);
+
+        } catch (Exception err) {
+            err.printStackTrace();
+            Log.d(TAG, "createTable: ");
+        }
+    }
+
+    public void createCodeTable(SQLiteDatabase db) {
+        try{
+            String query = "CREATE TABLE VerifyCode ("
+                    + "email TEXT PRIMARY KEY, "
+                    + "code TEXT,"
+                    + "sendTime DATETIME DEFAULT (datetime('now','localtime')),"
+                    + "status TEXT)";
 
             db.execSQL(query);
 
