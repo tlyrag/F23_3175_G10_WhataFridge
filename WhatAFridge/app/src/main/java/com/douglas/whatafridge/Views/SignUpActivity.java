@@ -3,7 +3,10 @@ package com.douglas.whatafridge.Views;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +22,10 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends WFTemplate {
-
+    public static final Pattern VALID_PASSWORD_REGEX  = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$", Pattern.CASE_INSENSITIVE);
 
     EditText editTextSignUpEmail;
     EditText editTextSignUpPassword;
@@ -40,6 +44,29 @@ public class SignUpActivity extends WFTemplate {
         editTextSignUpEmail = findViewById(R.id.editTextSignUpEmail);
         editTextSignUpPassword = findViewById(R.id.editTextSignUpPassword);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
+
+        Intent intent = getIntent();
+        String Email = intent.getStringExtra("email");
+        editTextSignUpEmail.setText(Email);
+        editTextSignUpEmail.setEnabled(false);
+
+        editTextConfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String password = editTextSignUpPassword.getText().toString();
+                String confirm = editTextConfirmPassword.getText().toString();
+                if(!confirm.equals("") && !password.equals(confirm)){
+                    editTextConfirmPassword.setBackgroundColor(Color.RED);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
 
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener((View v) -> {
@@ -71,6 +98,14 @@ public class SignUpActivity extends WFTemplate {
 
             String userid = editTextSignUpEmail.getText().toString();
             String password = editTextSignUpPassword.getText().toString();
+
+            //password validation
+//            Matcher matcher = VALID_PASSWORD_REGEX.matcher(password);
+//            if(!matcher.matches()){
+//                Toast.makeText(this,"Password should contain numbers, letters, and special characters (8-15 characters)", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+
             String shaPassword = encryptSHA256(password);
             User user = db.selectUserInfo(userid);
 

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.WhatAFridge"
         tools:targetApi="31">
         <activity
+            android:name=".Views.VerificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".Views.SignUpActivity"
             android:exported="false" />
         <activity

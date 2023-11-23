@@ -129,5 +129,78 @@ public class UserDBController  {
 
     }
 
+    public void insertVerifyCode(String email, String code) {
+        try {
+
+            SQLiteDatabase db = myDBHelper.getWritableDatabase();
+            //check
+            String query = "SELECT code FROM VerifyCode"
+                         + " WHERE email = '" + email + "' AND status = 'Y'";
+            Cursor c = db.rawQuery(query,null);
+
+            if(c.getCount() != 0){
+                query = "DELETE FROM VerifyCode WHERE email = '" + email + "'";
+                db.execSQL(query);
+
+            }
+            query = "INSERT INTO VerifyCode (email, code, status) VALUES ('" + email +"','" + code +"','Y' )";
+            db.execSQL(query);
+
+
+            db.close();
+
+        } catch (Exception err) {
+            Log.d(TAG, "insertVerifyCode: "+ err.getMessage() );
+        }
+
+    }
+
+
+    public String selectVerifyCode(String email) {
+        String code = "";
+
+        try{
+            SQLiteDatabase db = myDBHelper.getReadableDatabase();
+            String query = "SELECT code FROM VerifyCode"
+                    + " WHERE email = '" + email + "'";
+
+            Cursor c = db.rawQuery(query,null);
+            c.moveToNext();
+            code = c.getString(0);
+
+            c.close();
+        } catch (Exception err) {
+            err.printStackTrace();
+            Log.d(TAG, "selectUserInfo: " +err.getMessage());
+        }
+
+        return code;
+    }
+
+    public void deleteVerifyCode(String email) {
+        try {
+
+            SQLiteDatabase db = myDBHelper.getWritableDatabase();
+            //check
+            String query = "SELECT code FROM VerifyCode"
+                    + " WHERE email = '" + email + "' AND status = 'Y'";
+            Cursor c = db.rawQuery(query,null);
+
+            if(c.getCount() != 0){
+                query = "DELETE FROM VerifyCode WHERE email = '" + email + "'";
+                db.execSQL(query);
+
+            }
+
+            db.close();
+
+        } catch (Exception err) {
+            Log.d(TAG, "deleteVerifyCode: "+ err.getMessage() );
+        }
+
+    }
+
+
+
 
 }
