@@ -65,9 +65,9 @@ public class AddRecipesActivity extends WFTemplate {
     }
     public void getItemView() {
         try {
-            editTextRecipeName = findViewById(R.id.editTextMyRecipeName);
-            editTextRecipeSummary = findViewById(R.id.editTextMyRecipeSummary);
-            editTextRecipeInstruction = findViewById(R.id.editTextMyRecipeInstruction);
+            editTextRecipeName = findViewById(R.id.editTextRecipeName);
+            editTextRecipeSummary = findViewById(R.id.editTextRecipeSummary);
+            editTextRecipeInstruction = findViewById(R.id.editTextRecipeInstructions);
             editTextRecipeNumOfIngredients = findViewById(R.id.editTextNumberOfIngred);
             ingredientRecyclerView = findViewById(R.id.ingredientRecyclerView);
             btnAddIngreds = findViewById(R.id.btnAddIngreds);
