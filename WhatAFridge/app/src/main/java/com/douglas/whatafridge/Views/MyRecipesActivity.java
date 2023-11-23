@@ -1,14 +1,11 @@
 package com.douglas.whatafridge.Views;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.douglas.whatafridge.Controller.Database.RecipeDBController;
 import com.douglas.whatafridge.Controller.Adapters.MyRecipeRecyclerViewAdapter;
@@ -36,7 +33,7 @@ public class MyRecipesActivity extends WFTemplate implements MyRecipeRecyclerVie
     }
     public void getItemView() {
         try {
-            recyclerViewRecipe = findViewById(R.id.recipeRecyclerView);
+            recyclerViewRecipe = findViewById(R.id.RecipesRecyclerView);
         } catch (Exception err) {
             Log.d(TAG, "getItemView: Unable to get Item view from My Recipes "+ err.getMessage());
         }
@@ -53,7 +50,7 @@ public class MyRecipesActivity extends WFTemplate implements MyRecipeRecyclerVie
         
     }
     public void setRecyclerViewRecipe() {
-         recipeAdapter = new MyRecipeRecyclerViewAdapter(recipeList,this);
+        recipeAdapter = new MyRecipeRecyclerViewAdapter(recipeList,this);
         recyclerViewRecipe.setAdapter(recipeAdapter);
         LinearLayoutManager lm  = new LinearLayoutManager(this);
         recyclerViewRecipe.setLayoutManager(lm);

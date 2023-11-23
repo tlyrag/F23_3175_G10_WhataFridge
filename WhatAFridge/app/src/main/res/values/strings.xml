@@ -6,7 +6,7 @@
     <string name="txtViewRecipeTitle">Details:</string>
     <string name="btnGetRecipe">View Recipe</string>>
     <string name="txtAppTitle">WhatAFridge</string>
-    <string name="btnSearchPantry">Search Pantry!</string>
+    <string name="btnSearchPantry">Fridge Me!</string>
     <string name="textViewSeparator">-------------Or Search By Ingredients-------------</string>>
     <string name="web_client_id">262299247603-qh4ipvj319u36ertmd8toinahdf89cor.apps.googleusercontent.com</string>
     <string name="txtLoginWithGoogle">Login with Google</string>
@@ -55,7 +55,13 @@
     <string name="txtHintConfirmPassword">Confirm Password</string>
     <string name="txtHaveAccount">already have an account? Sign in</string>>
     <string name="txtCheckEmail">Enter Email correctly</string>>
-    <string name="txtCheckPassword">Password does not matched.</string>>
+    <string name="txtCheckPassword">Password does not matched.</string>
+    <string name="textViewMyFridgeTitle"> Add Fridge Items</string>
+    <string name="editTextFridgeItemName">Item Name</string>
+    <string name="editTextFridgeBestBefore">Best Before</string>
+    <string name="editTextIngredientQuantity">Ingredient Quantity\n</string>
+    <string name="btnAddFridge">Fridge</string>
+    <string name="btnAddItem">Add Item</string>>
 
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>

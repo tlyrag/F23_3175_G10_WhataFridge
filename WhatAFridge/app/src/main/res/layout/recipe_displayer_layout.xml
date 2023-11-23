@@ -47,8 +47,7 @@
             android:id="@+id/imageViewRecipeImg"
             android:layout_width="150dp"
             android:layout_height="130dp"
-            android:layout_marginLeft="5dp"
-            app:srcCompat="@drawable/random_recipe" />
+            android:layout_marginLeft="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
