@@ -114,7 +114,7 @@ public class VerificationActivity extends WFTemplate {
         }
 
         timerTask = new TimerTask() {
-            int count = 10;
+            int count = 6000;//10min
 
             @Override
             public void run() {
