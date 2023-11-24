@@ -57,8 +57,8 @@
     <string name="txtCheckEmail">Enter Email correctly</string>>
     <string name="txtCheckPassword">Password does not matched.</string>
 
-    <string name="txtVerification">Verification of Email</string>
-    <string name="txtSendCode">Send Code</string>
+    <string name="txtVerification">Email Verification</string>
+    <string name="txtSendCode">Send</string>
     <string name="txtVerify">Verify</string>
     <string name="hintEnterCode">Enter Verification Code</string>
     <string name="txtVerifyTime">The code is valid in time.</string>>
