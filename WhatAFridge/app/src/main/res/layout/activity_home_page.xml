@@ -6,35 +6,91 @@
     android:layout_height="match_parent"
     tools:context=".Views.HomePageActivity">
 
-    <Button
-        android:id="@+id/btnMyRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/btnMyRecipe"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btnSearchRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/btnSearchRecipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMyRecipe" />
+        <LinearLayout
+            android:layout_width="196dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnAddRecipeAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/btnAddRecipeAct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearchRecipe" />
+            <ImageButton
+                android:id="@+id/btnProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_profile" />
+
+            <ImageButton
+                android:id="@+id/btnAddFridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_add_item" />
+
+            <ImageButton
+                android:id="@+id/btnSearchRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_search_recipe" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnMyFridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_fridge" />
+
+            <ImageButton
+                android:id="@+id/btnAddRecipeAct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_add_recipe" />
+
+            <ImageButton
+                android:id="@+id/btnMyRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white"
+                android:elevation="10dp"
+                android:fadingEdgeLength="5dp"
+                android:src="@drawable/btn_my_recipes" />
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

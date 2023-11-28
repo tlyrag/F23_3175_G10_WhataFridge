@@ -2,6 +2,8 @@ package com.douglas.whatafridge.Views;
 
 import com.douglas.whatafridge.Controller.API.SpoonacularController;
 import com.douglas.whatafridge.Controller.Adapters.RecipeListViewAdapter;
+import com.douglas.whatafridge.Controller.Database.FridgeDBController;
+import com.douglas.whatafridge.Model.ObjectModels.Ingredients;
 import com.douglas.whatafridge.Model.ObjectModels.Recipe;
 import com.douglas.whatafridge.Model.SpoonApiModels.GenericAPIResponse;
 import com.douglas.whatafridge.R;
@@ -29,6 +31,8 @@ public class SearchRecipeActivity extends WFTemplate {
     Button btnFindRecipe;
     EditText editTextFindIngred;
     ListView listViewRecipes;
+    Button btnSearchFridge;
+    String ingredients;
 
     /// View Actions and Handlings
     @Override
@@ -41,6 +45,7 @@ public class SearchRecipeActivity extends WFTemplate {
         btnFindRecipe = findViewById(R.id.btnFindRecipe);
         editTextFindIngred = findViewById(R.id.editTextFindRecipe);
         listViewRecipes = findViewById(R.id.ListViewRecipe);
+        btnSearchFridge = findViewById(R.id.btnSearchFridge);
 
 
         /**
@@ -52,7 +57,7 @@ public class SearchRecipeActivity extends WFTemplate {
 
         try{
             btnFindRecipe.setOnClickListener(view -> {
-                String ingredients = getEditText();
+                ingredients = getEditText();
                 getRecipes(this,ingredients);
             });
         } catch(Exception err) {
@@ -78,6 +83,16 @@ public class SearchRecipeActivity extends WFTemplate {
         } catch (Exception err) {
             Log.d(TAG, "onCreate: ");
         }
+        try {
+            btnSearchFridge.setOnClickListener(view-> {
+                getallIngredients();
+                Log.d(TAG, "Pantry Ingredients: " + ingredients);
+                getRecipes(this,ingredients);
+
+            });
+        }catch (Exception err) {
+            Log.d(TAG, "onCreate: Failed on Search Fridge Button");
+        }
     }
 
     ////////////////////////////////View Methods/////////////////////////////
@@ -100,6 +115,7 @@ public class SearchRecipeActivity extends WFTemplate {
             editTextFindIngred.setText("");
             return "";
         }
+
     }
 
 
@@ -193,6 +209,18 @@ public class SearchRecipeActivity extends WFTemplate {
                 }
         );
     }
+    public void getallIngredients() {
+        FridgeDBController db = new FridgeDBController(this);
+        List< Ingredients> ingredientsList = db.getAllIngredients();
+         for(int i=0;i<ingredientsList.size();i++) {
+             if(i!=ingredientsList.size()-1) {
+                 ingredients+=ingredientsList.get(i).name+",";
+             } else {
+                 ingredients+=ingredientsList.get(i).name;
+             }
 
+
+         }
+    }
 
 }

@@ -23,5 +23,6 @@ public class WFTemplate extends AppCompatActivity {
         actionbar.setDisplayUseLogoEnabled(true);
         actionbar.setLogo(R.mipmap.ic_launcher);
         actionbar.setTitle(R.string.txtAppTitle);
+        actionbar.setElevation(10);
     }
 }

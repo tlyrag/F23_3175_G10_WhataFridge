@@ -6,7 +6,7 @@
     <string name="txtViewRecipeTitle">Details:</string>
     <string name="btnGetRecipe">View Recipe</string>>
     <string name="txtAppTitle">WhatAFridge</string>
-    <string name="btnSearchPantry">Search Pantry!</string>
+    <string name="btnSearchPantry">Fridge Me!</string>
     <string name="textViewSeparator">-------------Or Search By Ingredients-------------</string>>
     <string name="web_client_id">262299247603-qh4ipvj319u36ertmd8toinahdf89cor.apps.googleusercontent.com</string>
     <string name="txtLoginWithGoogle">Login with Google</string>
@@ -15,10 +15,10 @@
     <string name="txtRecipeDetailPreparation">How to Prepare</string>
     <string name="txtOr">Or</string>
     <string name="txtLogin">Login</string>
-    <string name="txtLoingIdHint">Enter your Username/Email</string>
+    <string name="txtLoingIdHint">Enter your Email</string>
     <string name="txtPasswordHint">Enter Your Password</string>
     <string name="txtForgetPassword">Forget Password?</string>
-    <string name="txtSignUp">Signup</string>
+    <string name="txtSignUp">Sign Up</string>
 
     <string name="txtUserID">UserID/Email</string>
     <string name="txtProfileNameHint">Enter Your Name</string>
@@ -49,14 +49,34 @@
     <string name="btnAddIngreds">Add</string>
     <string name="btnAddRecipe">Add Recipe</string>
     <string name="txtViewMyRecipeTitle">My Recipes</string>
-    <string name="btnAddRecipeAct">Add Recipe</string>>
+    <string name="btnAddRecipeAct">Add Recipe</string>
+    <string name="txtProfile">Profile</string>
+    <string name="txtRegister">REGISTER</string>
+    <string name="txtHintConfirmPassword">Confirm Password</string>
+    <string name="txtHaveAccount">already have an account? Sign in</string>>
+    <string name="txtCheckEmail">Enter Email correctly</string>>
+    <string name="txtCheckPassword">Password does not matched.</string>
+
+    <string name="txtVerification">Email Verification</string>
+    <string name="txtSendCode">Send</string>
+    <string name="txtVerify">Verify</string>
+    <string name="hintEnterCode">Enter Verification Code</string>
+    <string name="txtVerifyTime">The code is valid in time.</string>>
+
+    <string name="textViewMyFridgeTitle"> Add Fridge Items</string>
+    <string name="editTextFridgeItemName">Item Name</string>
+    <string name="editTextFridgeBestBefore">Best Before</string>
+    <string name="editTextIngredientQuantity">Ingredient Quantity\n</string>
+    <string name="btnAddFridge">Fridge</string>
+    <string name="btnAddItem">Add Item</string>>
+
 
     <string-array name="typesOfVegetarians">
         <item>No Vegetarian</item>
+        <item>Custom</item>
         <item>Lacto-ovo vegetarian</item>
         <item>Lacto-vegetarian</item>
         <item>Ovo-vegetarian</item>
-        <item>Flexitarian</item>
         <item>Pescatarian</item>
         <item>Vegan</item>
     </string-array>

@@ -18,9 +18,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.douglas.whatafridge.Controller.Database.MyDBHelper;
+import com.douglas.whatafridge.Controller.Database.UserDBController;
 import com.douglas.whatafridge.Controller.MailController;
+import com.douglas.whatafridge.Model.ObjectModels.User;
 import com.douglas.whatafridge.R;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
@@ -51,22 +55,35 @@ public class LoginActivity extends WFTemplate {
     EditText editTextUserId;
     EditText editTextPassword;
 
+    TextView txtViewSignUp;
 
     String Userid;
     String Password;
+    MyDBHelper myDBHelper;
+    UserDBController db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         //after login successfully, it is stored in the device and use again.
-        SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("USER", MODE_PRIVATE);
         Userid = preferences.getString(getString(R.string.txtUserid),"");
         Password = preferences.getString(getString(R.string.txtPassword),"");
 
+        myDBHelper = new MyDBHelper(LoginActivity.this);
+
+        db = new UserDBController(myDBHelper);
+
         if(!Userid.equals("")){
             //check the information with Database
+            User user = db.selectUserInfo(Userid);
 
+            //move to mainActivity
+            if(Password.equals(user.getPassword())){
+                startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
+            }
         }
 
         //hide actionbar
@@ -74,10 +91,17 @@ public class LoginActivity extends WFTemplate {
             getSupportActionBar().hide();
         }
 
+        txtViewSignUp = findViewById(R.id.txtViewSignUp);
+        txtViewSignUp.setOnClickListener((View v) -> {
+            //startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+            startActivity(new Intent(LoginActivity.this,VerificationActivity.class));
+
+        });
+
         btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
         btnLoginWithoutGoogle = findViewById(R.id.btnLoginWithoutGoogle);
 
-        //google one tap login
+        //google one tap login (It works in a real device)
         oneTapClient = Identity.getSignInClient(this);
 
         //send Client Id to OAuth 2.0 server
@@ -107,23 +131,25 @@ public class LoginActivity extends WFTemplate {
                                     // with your backend.
                                     String email = credential.getId(); //email
                                     String password = credential.getPassword(); //password;
-
                                     //simple SHA
-                                    byte[] message = password.getBytes(StandardCharsets.UTF_8);
-                                    MessageDigest md = null;
-                                    try {
-                                        md = MessageDigest.getInstance("SHA-256");
-                                    } catch (NoSuchAlgorithmException e) {
-                                        throw new RuntimeException(e);
+                                    String shaPassword = encryptSHA256(password);
+
+                                    //compare to database
+                                    User user = db.selectUserInfo(email);
+
+                                    if(user == null){
+                                        db.insertUserPass(email,shaPassword);
+                                    }else{
+                                        db.updateUserInfo(user);
                                     }
-                                    byte[] digest = md.digest(message);
-                                    String shaPassword = new String(digest, StandardCharsets.UTF_8);
 
                                     SharedPreferences.Editor editor = preferences.edit();
                                     editor.putString(getString(R.string.txtUserid),email);
                                     editor.putString(getString(R.string.txtPassword),shaPassword);
 
                                     editor.apply();
+
+                                    startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
 
                                 }
                             } catch (ApiException e) {
@@ -163,8 +189,40 @@ public class LoginActivity extends WFTemplate {
 
         btnLoginWithoutGoogle.setOnClickListener(view -> {
 
+            editTextUserId = findViewById(R.id.editTextUserId);
+            editTextPassword = findViewById(R.id.editTextPassword);
 
+            //CSIS3175
+            //c635d9b9556127408e3bb3a8e3a074506248c96a9c82b368da4a66d108b5c676
 
+            if(editTextUserId.getText().toString().isEmpty()){
+                Toast.makeText(this, "Enter User Email.", Toast.LENGTH_SHORT).show();
+            }else if(editTextPassword.getText().toString().isEmpty()){
+                Toast.makeText(this, "Enter the password.", Toast.LENGTH_SHORT).show();
+            }else{
+
+                String oriPassword = editTextPassword.getText().toString();
+                String shaPassword = encryptSHA256(oriPassword);
+
+                //compare to database
+                User user = db.selectUserInfo(editTextUserId.getText().toString());
+
+                if(user == null){
+                    Toast.makeText(this, "Not existed user information. Please Sign up.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(shaPassword.equals(user.getPassword())){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString(getString(R.string.txtUserid),editTextUserId.getText().toString());
+                    editor.putString(getString(R.string.txtPassword),shaPassword);
+
+                    editor.apply();
+
+                    startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
+                }
+
+            }
 
             /*
 
@@ -184,47 +242,38 @@ public class LoginActivity extends WFTemplate {
                 throw new RuntimeException(e);
             }
 
-
-
-            editTextUserId = findViewById(R.id.editTextUserId);
-            editTextPassword = findViewById(R.id.editTextPassword);
-
-            if(editTextUserId.getText().toString().isEmpty()){
-                Toast.makeText(this, "Enter User ID or User Email.", Toast.LENGTH_SHORT).show();
-            }else if(editTextPassword.getText().toString().isEmpty()){
-                Toast.makeText(this, "Enter the password.", Toast.LENGTH_SHORT).show();
-            }else{
-
-                String oriPassword = editTextPassword.getText().toString();
-                //simple SHA
-                byte[] message = oriPassword.getBytes(StandardCharsets.UTF_8);
-                MessageDigest md = null;
-                try {
-                    md = MessageDigest.getInstance("SHA-256");
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                }
-                byte[] digest = md.digest(message);
-                String shaPassword = new String(digest, StandardCharsets.UTF_8);
-
-                //compare to database
-
-
-
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString(getString(R.string.txtUserid),editTextUserId.getText().toString());
-                editor.putString(getString(R.string.txtPassword),shaPassword);
-
-                editor.apply();
-
-            }
-
-
-
-
              */
-            startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
+            //startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
+            startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
 
         });
+    }
+
+    public String encryptSHA256(String oriString){
+        String shaString = "";
+        byte[] message = oriString.getBytes(StandardCharsets.UTF_8);
+
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+            md.update(oriString.getBytes());
+            byte byteData[] = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for(int i = 0 ; i < byteData.length ; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            shaString = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        return shaString;
+    }
+
+    @Override
+    protected void onDestroy() {
+        myDBHelper.close();
+        super.onDestroy();
     }
 }

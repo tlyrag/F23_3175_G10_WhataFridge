@@ -16,6 +16,21 @@
         android:theme="@style/Theme.WhatAFridge"
         tools:targetApi="31">
         <activity
+            android:name=".Views.MainPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.VerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.AddFridgeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.MyFridgeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Views.MyRecipesActivity"
             android:exported="false" />
         <activity
