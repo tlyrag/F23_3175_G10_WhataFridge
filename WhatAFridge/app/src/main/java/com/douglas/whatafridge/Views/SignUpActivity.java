@@ -38,6 +38,11 @@ public class SignUpActivity extends WFTemplate {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //hide actionbar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         myDBHelper = new MyDBHelper(SignUpActivity.this);
         db = new UserDBController(myDBHelper);
 
@@ -60,6 +65,8 @@ public class SignUpActivity extends WFTemplate {
                 String confirm = editTextConfirmPassword.getText().toString();
                 if(!confirm.equals("") && !password.equals(confirm)){
                     editTextConfirmPassword.setBackgroundColor(Color.RED);
+                }else{
+                    editTextConfirmPassword.setBackgroundColor(Color.WHITE);
                 }
             }
             @Override
@@ -122,7 +129,7 @@ public class SignUpActivity extends WFTemplate {
                 editor.apply();
 
                 //move to home page
-                startActivity(new Intent(SignUpActivity.this,HomePageActivity.class));
+                startActivity(new Intent(SignUpActivity.this,MainPageActivity.class));
 
             }else{
                 Toast.makeText(this, "Already have an account.", Toast.LENGTH_SHORT).show();
