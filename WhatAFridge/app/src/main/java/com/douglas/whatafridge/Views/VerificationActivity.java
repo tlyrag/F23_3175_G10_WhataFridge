@@ -34,6 +34,11 @@ public class VerificationActivity extends WFTemplate {
         binding = ActivityVerificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //hide actionbar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding.txtViewVerifyTime.setText("");
 
         myDBHelper = new MyDBHelper(VerificationActivity.this);
@@ -114,7 +119,7 @@ public class VerificationActivity extends WFTemplate {
         }
 
         timerTask = new TimerTask() {
-            int count = 6000;//10min
+            int count = 600;//10min
 
             @Override
             public void run() {

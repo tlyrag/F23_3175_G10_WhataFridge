@@ -82,7 +82,7 @@ public class LoginActivity extends WFTemplate {
 
             //move to mainActivity
             if(Password.equals(user.getPassword())){
-                startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
+                startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
             }
         }
 
@@ -148,6 +148,8 @@ public class LoginActivity extends WFTemplate {
                                     editor.putString(getString(R.string.txtPassword),shaPassword);
 
                                     editor.apply();
+
+                                    startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
 
                                 }
                             } catch (ApiException e) {
@@ -216,6 +218,8 @@ public class LoginActivity extends WFTemplate {
                     editor.putString(getString(R.string.txtPassword),shaPassword);
 
                     editor.apply();
+
+                    startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
                 }
 
             }
