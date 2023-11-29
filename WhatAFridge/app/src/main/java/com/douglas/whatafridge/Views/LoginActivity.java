@@ -71,6 +71,7 @@ public class LoginActivity extends WFTemplate {
         SharedPreferences preferences = getSharedPreferences("USER", MODE_PRIVATE);
         Userid = preferences.getString(getString(R.string.txtUserid),"");
         Password = preferences.getString(getString(R.string.txtPassword),"");
+        String Google = preferences.getString("Google","");
 
         myDBHelper = new MyDBHelper(LoginActivity.this);
 
@@ -81,7 +82,7 @@ public class LoginActivity extends WFTemplate {
             User user = db.selectUserInfo(Userid);
 
             //move to mainActivity
-            if(Password.equals(user.getPassword())){
+            if(Google.equals("Y") || Password.equals(user.getPassword())){
                 startActivity(new Intent(LoginActivity.this,MainPageActivity.class));
             }
         }
@@ -131,21 +132,21 @@ public class LoginActivity extends WFTemplate {
                                     // with your backend.
                                     String email = credential.getId(); //email
                                     String password = credential.getPassword(); //password;
-                                    //simple SHA
-                                    String shaPassword = encryptSHA256(password);
+
 
                                     //compare to database
                                     User user = db.selectUserInfo(email);
 
                                     if(user == null){
-                                        db.insertUserPass(email,shaPassword);
+                                        db.insertUserPass(email,password);
                                     }else{
                                         db.updateUserInfo(user);
                                     }
 
                                     SharedPreferences.Editor editor = preferences.edit();
                                     editor.putString(getString(R.string.txtUserid),email);
-                                    editor.putString(getString(R.string.txtPassword),shaPassword);
+                                    editor.putString(getString(R.string.txtPassword),password);
+                                    editor.putString("Google","Y");
 
                                     editor.apply();
 
